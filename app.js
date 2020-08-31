@@ -1,3 +1,6 @@
+// MEDIA CONSTRAINT OBJECT
+const constraintObj = { audio: true, video: true };
+
 // MODAL CSS STYLE
 const modalStyle = document.createElement("style");
 modalStyle.innerHTML = `
@@ -60,19 +63,18 @@ padding: 1rem;
 border-radius: 8px;
 }
 `;
-
 // attach modal css style to head
-// todo: tidy-up the position
+// todo: tidy-up the positions
 document.head.appendChild(modalStyle);
 
-// MODAL DOM FRAGMENT
+// MODAL & VIDEO DOM FRAGMENTS
 const modalDOM = document.createRange().createContextualFragment(`
 <!-- Modal container -->
 <div class="modal-container" id="greeting-modal">
 <!-- Modal  -->
 <div class="modal">
 <video id="video-preview" muted></video>
-<video id="video-playback" controls></video>
+<video id="video-playback" controls style="display: none"></video>
 </div>
 
 <!-- Background, click to close -->
@@ -83,12 +85,11 @@ const modalDOM = document.createRange().createContextualFragment(`
 // todo: tidy-up the position
 document.body.appendChild(modalDOM);
 
+// FUNCTIONS
 const toggleModal = () =>
   window.location.href.indexOf("#greeting-modal") !== -1
     ? (window.location.href = "#")
     : (window.location.href = "#greeting-modal");
-
-const constraintObj = { audio: true, video: true };
 
 const startWebcamStream = () => {
   navigator.mediaDevices
@@ -105,16 +106,26 @@ const startWebcamStream = () => {
     .catch(err => console.log(err.name, err.message));
 };
 
-const stopWebcamStream = () => localStream.getTracks().forEach(track => track.stop());
+const stopWebcamStream = () => {
+  if ("localStream" in window) {
+    localStream.getTracks().forEach(track => track.stop());
+  }
+};
 
 const startWebcamRecorder = () => {
-  if ("localStream" in window && localStream.active) {
+  // check if there is an active stream, if not start one
+  if (!("localStream" in window && localStream.active)) {
+    startWebcamStream();
+  }
+  // todo use promise here instead of timeout
+  setTimeout(() => {
+    // recrod stream
     window.mediaRecorder = new MediaRecorder(localStream);
     window.dataChunks = [];
     mediaRecorder.start();
     console.log(mediaRecorder.state);
     mediaRecorder.ondataavailable = e => dataChunks.push(e.data);
-  }
+  }, 2000);
 };
 
 const stopWebcamRecorder = () => {
@@ -122,62 +133,26 @@ const stopWebcamRecorder = () => {
     mediaRecorder.stop();
     console.log(mediaRecorder.state);
     mediaRecorder.onstop = () => {
-      let blob = new Blob(dataChunks, { type: "video/mp4;" });
+      blob = new Blob(dataChunks, { type: "video/mp4;" });
       dataChunks = [];
       let videoURL = window.URL.createObjectURL(blob);
+      // tack to the videoPlayback element
       const videoPlayback = document.getElementById("video-playback");
       videoPlayback.src = videoURL;
     };
   }
+  stopWebcamStream();
 };
 
 // TODO
-const playbackRecording = () => {};
-
-// navigator.mediaDevices
-//   .getUserMedia(constraintObj)
-//   .then(stream => {
-//     window.localStream = stream;
-//     const video = document.querySelector("#video-preview");
-
-//     video.srcObject = stream;
-
-//     // Display stream
-//     video.onloadedmetadata = () => video.play();
-
-//     // Recording
-//     const start = document.getElementById("button-start");
-//     const stop = document.getElementById("button-stop");
-//     const videoPlayback = document.getElementById("video-playback");
-
-//     const mediaRecorder = new MediaRecorder(stream);
-//     let dataChunks = [];
-
-//     // add listeners for start/stop clicks
-//     start.addEventListener("click", () => {
-//       mediaRecorder.start();
-//       console.log(mediaRecorder.state);
-//     });
-//     stop.addEventListener("click", () => {
-//       mediaRecorder.stop();
-//       console.log(mediaRecorder.state);
-//     });
-
-//     // store data chunks while recording
-//     mediaRecorder.ondataavailable = function (ev) {
-//       dataChunks.push(ev.data);
-//     };
-
-//     // Pressing stop
-//     mediaRecorder.onstop = () => {
-//       let blob = new Blob(dataChunks, { type: "video/mp4;" });
-//       // if there is another recording it is good to reset the data chunks, otherwise this gets appended
-//       dataChunks = [];
-//       // convert blob into objectURL
-//       let videoURL = window.URL.createObjectURL(blob);
-//       videoPlayback.src = videoURL;
-//     };
-//   })
-//   .catch(err => {
-//     console.log(err.name, err.message);
-//   });
+const playbackRecording = () => {
+  // check if there is something to playback within the video-playback element
+  if (!!document.querySelector("#video-playback").src) {
+    // hide the preview element
+    document.querySelector("#video-preview").style.display = "none";
+    // show the playback element
+    document.querySelector("#video-playback").style.display = "block";
+    // show the modal
+    toggleModal();
+  }
+};
