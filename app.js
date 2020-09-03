@@ -1,5 +1,19 @@
 // MEDIA CONSTRAINT OBJECT
-const constraintObj = { audio: true, video: true };
+// NB https://developer.mozilla.org/en-US/docs/Web/API/MediaTrackConstraints
+const constraintObj = {
+  audio: true,
+  video: true,
+  // video: {
+  //   facingMode: "user",
+  //   width: { min: 640, ideal: 1280, max: 1920 },
+  //   height: { min: 480, ideal: 720, max: 1080 }
+  // }
+
+  // Other useful props:
+  // width: 1280, height: 720  -- preference only
+  // facingMode: {exact: "user"} // forcing to be user camera
+  // facingMode: "environment"
+};
 
 // MODAL CSS STYLE
 const modalStyle = document.createElement("style");
@@ -86,6 +100,33 @@ const modalDOM = document.createRange().createContextualFragment(`
 document.body.appendChild(modalDOM);
 
 // FUNCTIONS
+// handle older browsers that might implement getUserMedia in some way
+if (navigator.mediaDevices === undefined) {
+  navigator.mediaDevices = {};
+  navigator.mediaDevices.getUserMedia = function (constraintObj) {
+    const getUserMedia = navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
+    if (!getUserMedia) {
+      return Promise.reject(new Error("getUserMedia is not implemented in this browser"));
+    }
+    return new Promise(function (resolve, reject) {
+      getUserMedia.call(navigator, constraintObj, resolve, reject);
+    });
+  };
+} else {
+  // this logs all Audio/Video IO connections:
+  navigator.mediaDevices
+    .enumerateDevices()
+    .then(devices => {
+      devices.forEach(device => {
+        console.log(device.kind.toUpperCase(), device.label);
+        //, device.deviceId
+      });
+    })
+    .catch(err => {
+      console.log(err.name, err.message);
+    });
+}
+
 const toggleModal = () =>
   window.location.href.indexOf("#greeting-modal") !== -1
     ? (window.location.href = "#")
@@ -98,7 +139,12 @@ const startWebcamStream = () => {
       window.localStream = stream;
       const video = document.querySelector("#video-preview");
 
-      video.srcObject = stream;
+      if ("srcObject" in video) {
+        video.srcObject = stream;
+      } else {
+        // legacy version
+        video.src = window.URL.createObjectURL(stream);
+      }
 
       // Display stream
       video.onloadedmetadata = () => video.play();
