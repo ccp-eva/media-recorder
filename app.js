@@ -190,7 +190,6 @@ const stopWebcamRecorder = () => {
   stopWebcamStream();
 };
 
-// TODO
 const playbackRecording = () => {
   // check if there is something to playback within the video-playback element
   if (!!document.querySelector("#video-playback").src) {
