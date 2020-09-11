@@ -179,7 +179,8 @@ const stopWebcamRecorder = () => {
     mediaRecorder.stop();
     console.log(mediaRecorder.state);
     mediaRecorder.onstop = () => {
-      blob = new Blob(dataChunks, { type: "video/mp4;" });
+      window.blob = new Blob(dataChunks, { type: "video/mp4;" });
+      // reset dataChunks (for consecutive videos)
       dataChunks = [];
       let videoURL = window.URL.createObjectURL(blob);
       // tack to the videoPlayback element
