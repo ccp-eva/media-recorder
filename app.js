@@ -202,3 +202,23 @@ const playbackRecording = () => {
     toggleModal();
   }
 };
+
+// upload the blob
+const uploadVideo = () => {
+  // todo check if a blob is there
+
+  // define endpoint
+  const endpoint = "upload_video.php";
+
+  // Create a FormData object
+  const formData = new FormData();
+
+  // append the video file (i.e., the recorded blob)
+  formData.append("vidfile", blob, "yes");
+
+  // post the file using fetch
+  fetch(endpoint, {
+    method: "post",
+    body: formData, // formData
+  }).catch(console.error);
+};
