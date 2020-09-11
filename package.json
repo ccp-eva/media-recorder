@@ -1,0 +1,33 @@
+{
+  "name": "webcam-recorder",
+  "version": "1.0.0",
+  "description": "Utility functions for WebRTC to recrod (and upload) a webcam stream.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Kalaschnik/webcam-recorder.git"
+  },
+  "keywords": [
+    "WebRTC",
+    "Camera",
+    "Webcam",
+    "Audio",
+    "Upload",
+    "PHP"
+  ],
+  "author": "Steven Kalinke",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Kalaschnik/webcam-recorder/issues"
+  },
+  "homepage": "https://github.com/Kalaschnik/webcam-recorder#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "eslint": "^7.8.1",
+    "eslint-config-airbnb-base": "^14.2.0",
+    "eslint-plugin-import": "^2.22.0"
+  }
+}
