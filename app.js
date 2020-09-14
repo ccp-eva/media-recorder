@@ -1,22 +1,22 @@
 // MEDIA CONSTRAINT OBJECT
 // NB https://developer.mozilla.org/en-US/docs/Web/API/MediaTrackConstraints
-const constraintObj = {
-  audio: true,
-  video: true,
-  // video: {
-  //   facingMode: "user",
-  //   width: { min: 640, ideal: 1280, max: 1920 },
-  //   height: { min: 480, ideal: 720, max: 1080 }
-  // }
+// const constraintObj = {
+//   audio: true,
+//   video: true,
+//   // video: {
+//   //   facingMode: "user",
+//   //   width: { min: 640, ideal: 1280, max: 1920 },
+//   //   height: { min: 480, ideal: 720, max: 1080 }
+//   // }
 
-  // Other useful props:
-  // width: 1280, height: 720  -- preference only
-  // facingMode: {exact: "user"} // forcing to be user camera
-  // facingMode: "environment"
-};
+//   // Other useful props:
+//   // width: 1280, height: 720  -- preference only
+//   // facingMode: {exact: "user"} // forcing to be user camera
+//   // facingMode: "environment"
+// };
 
 // MODAL CSS STYLE
-const modalStyle = document.createElement("style");
+const modalStyle = document.createElement('style');
 modalStyle.innerHTML = `
 /* Greeting Modal Container */
 #greeting-modal {
@@ -103,43 +103,43 @@ document.body.appendChild(modalDOM);
 // handle older browsers that might implement getUserMedia in some way
 if (navigator.mediaDevices === undefined) {
   navigator.mediaDevices = {};
-  navigator.mediaDevices.getUserMedia = function (constraintObj) {
+  navigator.mediaDevices.getUserMedia = (constraintObject = { audio: true, video: true }) => {
     const getUserMedia = navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
     if (!getUserMedia) {
-      return Promise.reject(new Error("getUserMedia is not implemented in this browser"));
+      return Promise.reject(new Error('getUserMedia is not implemented in this browser'));
     }
-    return new Promise(function (resolve, reject) {
-      getUserMedia.call(navigator, constraintObj, resolve, reject);
+    return new Promise((resolve, reject) => {
+      getUserMedia.call(navigator, constraintObject, resolve, reject);
     });
   };
 } else {
   // this logs all Audio/Video IO connections:
   navigator.mediaDevices
     .enumerateDevices()
-    .then(devices => {
-      devices.forEach(device => {
-        console.log(device.kind.toUpperCase(), device.label);
-        //, device.deviceId
+    .then((devices) => {
+      devices.forEach((device) => {
+        console.log(device.kind.toUpperCase(), device.label); // , device.deviceId
       });
     })
-    .catch(err => {
+    .catch((err) => {
       console.log(err.name, err.message);
     });
 }
 
-const toggleModal = () =>
-  window.location.href.indexOf("#greeting-modal") !== -1
-    ? (window.location.href = "#")
-    : (window.location.href = "#greeting-modal");
+const toggleModal = () => {
+  window.location.href = ((window.location.href.indexOf('#greeting-modal') !== -1))
+    ? (window.location.href = '#')
+    : (window.location.href = '#greeting-modal');
+};
 
-const startWebcamStream = () => {
+const startWebcamStream = (constraintObject = { audio: true, video: true }) => {
   navigator.mediaDevices
-    .getUserMedia(constraintObj)
-    .then(stream => {
+    .getUserMedia(constraintObject)
+    .then((stream) => {
       window.localStream = stream;
-      const video = document.querySelector("#video-preview");
+      const video = document.querySelector('#video-preview');
 
-      if ("srcObject" in video) {
+      if ('srcObject' in video) {
         video.srcObject = stream;
       } else {
         // legacy version
@@ -149,42 +149,42 @@ const startWebcamStream = () => {
       // Display stream
       video.onloadedmetadata = () => video.play();
     })
-    .catch(err => console.log(err.name, err.message));
+    .catch((err) => console.log(err.name, err.message));
 };
 
 const stopWebcamStream = () => {
-  if ("localStream" in window) {
-    localStream.getTracks().forEach(track => track.stop());
+  if ('localStream' in window) {
+    window.localStream.getTracks().forEach((track) => track.stop());
   }
 };
 
 const startWebcamRecorder = () => {
   // check if there is an active stream, if not start one
-  if (!("localStream" in window && localStream.active)) {
+  if (!('localStream' in window && window.localStream.active)) {
     startWebcamStream();
   }
   // todo use promise here instead of timeout
   setTimeout(() => {
     // recrod stream
-    window.mediaRecorder = new MediaRecorder(localStream);
+    window.mediaRecorder = new MediaRecorder(window.localStream);
     window.dataChunks = [];
-    mediaRecorder.start();
-    console.log(mediaRecorder.state);
-    mediaRecorder.ondataavailable = e => dataChunks.push(e.data);
+    window.mediaRecorder.start();
+    console.log(window.mediaRecorder.state);
+    window.mediaRecorder.ondataavailable = (e) => window.dataChunks.push(e.data);
   }, 2000);
 };
 
 const stopWebcamRecorder = () => {
-  if ("mediaRecorder" in window && mediaRecorder.state === "recording") {
-    mediaRecorder.stop();
-    console.log(mediaRecorder.state);
-    mediaRecorder.onstop = () => {
-      window.blob = new Blob(dataChunks, { type: "video/mp4;" });
+  if ('mediaRecorder' in window && window.mediaRecorder.state === 'recording') {
+    window.mediaRecorder.stop();
+    console.log(window.mediaRecorder.state);
+    window.mediaRecorder.onstop = () => {
+      window.blob = new Blob(window.dataChunks, { type: 'video/mp4;' });
       // reset dataChunks (for consecutive videos)
-      dataChunks = [];
-      let videoURL = window.URL.createObjectURL(blob);
+      window.dataChunks = [];
+      const videoURL = window.URL.createObjectURL(window.blob);
       // tack to the videoPlayback element
-      const videoPlayback = document.getElementById("video-playback");
+      const videoPlayback = document.getElementById('video-playback');
       videoPlayback.src = videoURL;
     };
   }
@@ -193,11 +193,11 @@ const stopWebcamRecorder = () => {
 
 const playbackRecording = () => {
   // check if there is something to playback within the video-playback element
-  if (!!document.querySelector("#video-playback").src) {
+  if (document.querySelector('#video-playback').src) {
     // hide the preview element
-    document.querySelector("#video-preview").style.display = "none";
+    document.querySelector('#video-preview').style.display = 'none';
     // show the playback element
-    document.querySelector("#video-playback").style.display = "block";
+    document.querySelector('#video-playback').style.display = 'block';
     // show the modal
     toggleModal();
   }
@@ -208,17 +208,17 @@ const uploadVideo = () => {
   // todo check if a blob is there
 
   // define endpoint
-  const endpoint = "upload_video.php";
+  const endpoint = 'upload_video.php';
 
   // Create a FormData object
   const formData = new FormData();
 
   // append the video file (i.e., the recorded blob)
-  formData.append("vidfile", blob, "yes");
+  formData.append('vidfile', window.blob, 'yes');
 
   // post the file using fetch
   fetch(endpoint, {
-    method: "post",
+    method: 'post',
     body: formData, // formData
   }).catch(console.error);
 };
