@@ -1,53 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>WebRTC Webcam Demo</title>
-    <script src="app.js" async></script>
-  </head>
 
-  <body>
-    <h1>Webcam/Modal Utility Functions</h1>
-    <hr />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WebRTC Webcam Demo</title>
+  <script src="app.js" async></script>
+</head>
+
+<body>
+  <h1>Webcam/Modal Utility Functions</h1>
+  <hr />
+  <ul style="list-style-type: none">
+    <li>
+      <h2>1 Use Functions</h2>
+    </li>
     <ul style="list-style-type: none">
-      <li><h2>1 Use Functions</h2></li>
-      <ul style="list-style-type: none">
-        <li><h3>1.1 Show/Hide Modal UI</h3></li>
+      <li>
+        <h3>1.1 Show/Hide Modal UI</h3>
+      </li>
 
-        <code>toggleModal()</code>
-        to show and hide the modal UI.
+      <code>toggleModal()</code>
+      to show and hide the modal UI.
 
-        <li><h3>1.2 Control Webcam</h3></li>
-        <li><code>startWebcamStream()</code></li>
-        <li><code>stopWebcamStream()</code></li>
-        <li><code>startWebcamRecorder()</code></li>
-        <li><code>stopWebcamRecorder()</code></li>
-        <li><code>playbackRecording()</code></li>
-      </ul>
-
-      <li><h2>2 Use UI Elements</h2></li>
-      <ul style="list-style-type: none">
-        <li><h3>2.1 Show/Hide Modal UI</h3></li>
-        <li>
-          Use a button:
-          <button onclick="window.location.href = '#greeting-modal'">Open Modal UI</button> or a
-          regular link: <a href="#greeting-modal">Open Modal UI </a>
-        </li>
-        <li><h3>2.2 Control Webcam</h3></li>
-        For the sake of simplicity only buttons will be used in the following examples.<br />
-        NB; The buttons use the same
-        <code>onclick</code>
-        event as presented above.<br />
-        You can run the buttons sequentially and use
-        <button onclick="window.location.href = '#greeting-modal'">Open Modal UI</button>
-        to see the effect.
-        <li><button onclick="startWebcamStream()">Start Webcam Stream</button></li>
-        <li><button onclick="startWebcamRecorder()">Start Webcam Recorder</button></li>
-        <li><button onclick="stopWebcamRecorder()">Stop Webcam Recorder</button></li>
-        <li><button onclick="playbackRecording()">Playback Recording</button></li>
-        <li><button onclick="stopWebcamStream()">Stop Webcam Stream</button></li>
-      </ul>
+      <li>
+        <h3>1.2 Control Webcam</h3>
+      </li>
+      <li><code>startWebcamStream()</code></li>
+      <li><code>stopWebcamStream()</code></li>
+      <li><code>startWebcamRecorder()</code></li>
+      <li><code>stopWebcamRecorder()</code></li>
+      <li><code>playbackRecording()</code></li>
     </ul>
-  </body>
+
+    <li>
+      <h2>2 Use UI Elements</h2>
+    </li>
+    <ul style="list-style-type: none">
+      <li>
+        <h3>2.1 Show/Hide Modal UI</h3>
+      </li>
+      <li>
+        Use a button:
+        <button onclick="window.location.href = '#greeting-modal'">Open Modal UI</button> or a
+        regular link: <a href="#greeting-modal">Open Modal UI </a>
+      </li>
+      <li>
+        <h3>2.2 Control Webcam</h3>
+      </li>
+      For the sake of simplicity only buttons will be used in the following examples.<br />
+      NB; The buttons use the same
+      <code>onclick</code>
+      event as presented above.<br />
+      You can run the buttons sequentially and use
+      <button onclick="window.location.href = '#greeting-modal'">Open Modal UI</button>
+      to see the effect.
+      <li><button onclick="startWebcamStream()">Start Webcam Stream</button></li>
+      <li><button onclick="startWebcamRecorder()">Start Webcam Recorder</button></li>
+      <li><button onclick="stopWebcamRecorder()">Stop Webcam Recorder</button></li>
+      <li><button onclick="playbackRecording()">Playback Recording</button></li>
+      <li><button onclick="stopWebcamStream()">Stop Webcam Stream</button></li>
+    </ul>
+  </ul>
+</body>
+
 </html>
