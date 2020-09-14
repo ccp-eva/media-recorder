@@ -128,8 +128,8 @@ if (navigator.mediaDevices === undefined) {
 
 const toggleModal = () => {
   window.location.href = ((window.location.href.indexOf('#greeting-modal') !== -1))
-    ? (window.location.href = '#')
-    : (window.location.href = '#greeting-modal');
+    ? '#'
+    : '#greeting-modal';
 };
 
 const startWebcamStream = (constraintObject = { audio: true, video: true }) => {
