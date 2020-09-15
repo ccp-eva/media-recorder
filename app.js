@@ -163,7 +163,7 @@ const startWebcamRecorder = () => {
   if (!('localStream' in window && window.localStream.active)) {
     startWebcamStream();
   }
-  // todo use promise here instead of timeout
+  // todo use a promise here instead of timeout
   setTimeout(() => {
     // recrod stream
     window.mediaRecorder = new MediaRecorder(window.localStream);
@@ -206,20 +206,20 @@ const playbackRecording = () => {
 // upload the blob
 // default filename is an ISO 8601 timestamp (character-adjusted due to filename limitations)
 const uploadVideo = (filename = new Date().toISOString().replaceAll(':', '-').replace('.', '-')) => {
-  // TODO check if a blob is there
+  if ('blob' in window) {
+    // define endpoint
+    const endpoint = 'upload_video.php';
 
-  // define endpoint
-  const endpoint = 'upload_video.php';
+    // Create a FormData object
+    const formData = new FormData();
 
-  // Create a FormData object
-  const formData = new FormData();
+    // append the video file (i.e., the recorded blob)
+    formData.append('vidfile', window.blob, filename);
 
-  // append the video file (i.e., the recorded blob)
-  formData.append('vidfile', window.blob, filename);
-
-  // post the file using fetch
-  fetch(endpoint, {
-    method: 'post',
-    body: formData, // formData
-  }).catch(console.error);
+    // post the file using fetch
+    fetch(endpoint, {
+      method: 'post',
+      body: formData, // formData
+    }).catch(console.error);
+  }
 };
