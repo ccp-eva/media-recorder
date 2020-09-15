@@ -22,7 +22,7 @@
     <li><code>startWebcamRecorder() ⮕ starts a webcamstream (if not active) and starts recording</code></li>
     <li><code>stopWebcamRecorder() ⮕ stops the recording, creates the videofile, stops the webcam stream</code></li>
     <li><code>playbackRecording() ⮕ opens the modal to view the recording</code></li>
-    <li><code>uploadVideo(filename) ⮕ uploads the recording (filename defaults to ISO 8601 timestamp)</code></li>
+    <li><code>uploadVideo(filename) ⮕ uploads* the recording (filename defaults to ISO 8601 timestamp)</code></li>
   </ul>
 
 
@@ -44,9 +44,21 @@
     <li><button onclick="stopWebcamRecorder()">Stop Webcam Recorder</button> ⮕ stops the recording, creates the
       videofile, stops the webcam stream</li>
     <li><button onclick="playbackRecording()">Playback Recording</button> ⮕ opens the modal to view the recording </li>
-    <li><button onclick="uploadVideo()">Upload Recorded Video</button> ⮕ uploads the recording (filename defaults to ISO
+    <li><button onclick="uploadVideo()">Upload Recorded Video</button> ⮕ uploads* the recording (filename defaults to
+      ISO
       8601 timestamp)</li>
   </ol>
+
+  <small>
+    * You need to have a server-side endpoint for this function. PHP example:
+    <pre>
+      $target_path = "uploads/" . basename($_FILES["vidfile"]["name"] . ".mp4");
+      move_uploaded_file($_FILES["vidfile"]["tmp_name"], $target_path );
+    </pre>
+
+  </small>
+
+
 </body>
 
 </html>
