@@ -8,4 +8,4 @@ parserOptions:
   sourceType: module
 rules:
   no-console: 0
-  no-unused-vars: 0 # figure out how to bypass this
+  # no-unused-vars: 0

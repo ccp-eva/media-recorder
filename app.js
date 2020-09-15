@@ -15,9 +15,10 @@
 //   // facingMode: "environment"
 // };
 
-// MODAL CSS STYLE
-const modalStyle = document.createElement('style');
-modalStyle.innerHTML = `
+(function injectShell() {
+  // MODAL CSS STYLE
+  const modalStyle = document.createElement('style');
+  modalStyle.innerHTML = `
 /* Greeting Modal Container */
 #greeting-modal {
 visibility: hidden;
@@ -77,12 +78,12 @@ padding: 1rem;
 border-radius: 8px;
 }
 `;
-// attach modal css style to head
-// todo: tidy-up the positions
-document.head.appendChild(modalStyle);
+  // attach modal css style to head
+  // todo: tidy-up the positions
+  document.head.appendChild(modalStyle);
 
-// MODAL & VIDEO DOM FRAGMENTS
-const modalDOM = document.createRange().createContextualFragment(`
+  // MODAL & VIDEO DOM FRAGMENTS
+  const modalDOM = document.createRange().createContextualFragment(`
 <!-- Modal container -->
 <div class="modal-container" id="greeting-modal">
 <!-- Modal  -->
@@ -95,11 +96,12 @@ const modalDOM = document.createRange().createContextualFragment(`
 <a href="#" class="modal-bg"></a>
 </div>
 `);
-// attach modal DOM fragment to body
-// todo: tidy-up the position
-document.body.appendChild(modalDOM);
+  // attach modal DOM fragment to body
+  // todo: tidy-up the position
+  document.body.appendChild(modalDOM);
+}());
 
-// FUNCTIONS
+// todo embed this into functions
 // handle older browsers that might implement getUserMedia in some way
 if (navigator.mediaDevices === undefined) {
   navigator.mediaDevices = {};
@@ -126,6 +128,7 @@ if (navigator.mediaDevices === undefined) {
     });
 }
 
+// UTILITY FUNCTIONS
 const toggleModal = () => {
   window.location.href = ((window.location.href.indexOf('#greeting-modal') !== -1))
     ? '#'
@@ -222,4 +225,15 @@ const uploadVideo = (filename = new Date().toISOString().replaceAll(':', '-').re
       body: formData, // formData
     }).catch(console.error);
   }
+};
+
+module.exports = {
+  toggleModal,
+  startWebcamStream,
+  stopWebcamStream,
+  startWebcamRecorder,
+  stopWebcamRecorder,
+  playbackRecording,
+  uploadVideo,
+  injectShell,
 };
