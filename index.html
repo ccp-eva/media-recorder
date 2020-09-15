@@ -31,15 +31,15 @@
   You can <strong>run the buttons sequentially</strong> to see the effect.
 
   <ol>
-    <li><button onclick="window.location.href = '#greeting-modal'">Open Modal UI</button> ⮕ No webcam stream loaded
+    <li><button onclick="toggleModal()">Open Modal UI</button> ⮕ No webcam stream loaded
       (empty modal)</li>
     <li><button onclick="startWebcamStream()">Start Webcam Stream</button> ⮕ starts a webcam stream w/o recording it
     </li>
-    <li><button onclick="window.location.href = '#greeting-modal'">Open Modal UI</button> ⮕ You should see yourself</li>
+    <li><button onclick="toggleModal()">Open Modal UI</button> ⮕ You should see yourself</li>
     <li><button onclick="stopWebcamStream()">Stop Webcam Stream</button> ⮕ stops all active webcam streams</li>
     <li><button onclick="startWebcamRecorder()">Start Webcam Recorder</button> ⮕ starts a webcamstream (if not active)
       and starts recording</li>
-    <li><button onclick="window.location.href = '#greeting-modal'">Open Modal UI</button> ⮕ You should see yourself (you
+    <li><button onclick="toggleModal()">Open Modal UI</button> ⮕ You should see yourself (you
       get recorded now)</li>
     <li><button onclick="stopWebcamRecorder()">Stop Webcam Recorder</button> ⮕ stops the recording, creates the
       videofile, stops the webcam stream</li>
