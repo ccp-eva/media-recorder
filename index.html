@@ -9,59 +9,44 @@
 </head>
 
 <body>
-  <h1>Webcam/Modal Utility Functions</h1>
+  <h1>Silent Webcam Recorder</h1>
   <hr />
+  <h2>1 Utility Functions</h2>
+
+  The following functions are loaded into the window object, and thus work from everywhere.
+
   <ul style="list-style-type: none">
-    <li>
-      <h2>1 Use Functions</h2>
-    </li>
-    <ul style="list-style-type: none">
-      <li>
-        <h3>1.1 Show/Hide Modal UI</h3>
-      </li>
-
-      <code>toggleModal()</code>
-      to show and hide the modal UI.
-
-      <li>
-        <h3>1.2 Control Webcam</h3>
-      </li>
-      <li><code>startWebcamStream()</code></li>
-      <li><code>stopWebcamStream()</code></li>
-      <li><code>startWebcamRecorder()</code></li>
-      <li><code>stopWebcamRecorder()</code></li>
-      <li><code>playbackRecording()</code></li>
-    </ul>
-
-    <li>
-      <h2>2 Use UI Elements</h2>
-    </li>
-    <ul style="list-style-type: none">
-      <li>
-        <h3>2.1 Show/Hide Modal UI</h3>
-      </li>
-      <li>
-        Use a button:
-        <button onclick="window.location.href = '#greeting-modal'">Open Modal UI</button> or a
-        regular link: <a href="#greeting-modal">Open Modal UI </a>
-      </li>
-      <li>
-        <h3>2.2 Control Webcam</h3>
-      </li>
-      For the sake of simplicity only buttons will be used in the following examples.<br />
-      NB; The buttons use the same
-      <code>onclick</code>
-      event as presented above.<br />
-      You can run the buttons sequentially and use
-      <button onclick="window.location.href = '#greeting-modal'">Open Modal UI</button>
-      to see the effect.
-      <li><button onclick="startWebcamStream()">Start Webcam Stream</button></li>
-      <li><button onclick="startWebcamRecorder()">Start Webcam Recorder</button></li>
-      <li><button onclick="stopWebcamRecorder()">Stop Webcam Recorder</button></li>
-      <li><button onclick="playbackRecording()">Playback Recording</button></li>
-      <li><button onclick="stopWebcamStream()">Stop Webcam Stream</button></li>
-    </ul>
+    <li><code>toggleModal() ⮕ show/hide the modal UI</code></li>
+    <li><code>startWebcamStream() ⮕ starts a webcam stream w/o recording it</code></li>
+    <li><code>stopWebcamStream() ⮕ stops all active webcam streams</code></li>
+    <li><code>startWebcamRecorder() ⮕ starts a webcamstream (if not active) and starts recording</code></li>
+    <li><code>stopWebcamRecorder() ⮕ stops the recording, creates the videofile, stops the webcam stream</code></li>
+    <li><code>playbackRecording() ⮕ opens the modal to view the recording</code></li>
+    <li><code>uploadVideo(filename) ⮕ uploads the recording (filename defaults to ISO 8601 timestamp)</code></li>
   </ul>
+
+
+  <h2>2 Demonstration</h2>
+  You can simply tack the above function to any UI element. The samples belows use buttons.<br />
+  You can <strong>run the buttons sequentially</strong> to see the effect.
+
+  <ol>
+    <li><button onclick="window.location.href = '#greeting-modal'">Open Modal UI</button> ⮕ No webcam stream loaded
+      (empty modal)</li>
+    <li><button onclick="startWebcamStream()">Start Webcam Stream</button> ⮕ starts a webcam stream w/o recording it
+    </li>
+    <li><button onclick="window.location.href = '#greeting-modal'">Open Modal UI</button> ⮕ You should see yourself</li>
+    <li><button onclick="stopWebcamStream()">Stop Webcam Stream</button> ⮕ stops all active webcam streams</li>
+    <li><button onclick="startWebcamRecorder()">Start Webcam Recorder</button> ⮕ starts a webcamstream (if not active)
+      and starts recording</li>
+    <li><button onclick="window.location.href = '#greeting-modal'">Open Modal UI</button> ⮕ You should see yourself (you
+      get recorded now)</li>
+    <li><button onclick="stopWebcamRecorder()">Stop Webcam Recorder</button> ⮕ stops the recording, creates the
+      videofile, stops the webcam stream</li>
+    <li><button onclick="playbackRecording()">Playback Recording</button> ⮕ opens the modal to view the recording </li>
+    <li><button onclick="uploadVideo()">Upload Recorded Video</button> ⮕ uploads the recording (filename defaults to ISO
+      8601 timestamp)</li>
+  </ol>
 </body>
 
 </html>
