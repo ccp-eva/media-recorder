@@ -204,8 +204,9 @@ const playbackRecording = () => {
 };
 
 // upload the blob
-const uploadVideo = () => {
-  // todo check if a blob is there
+// default filename is an ISO 8601 timestamp (character-adjusted due to filename limitations)
+const uploadVideo = (filename = new Date().toISOString().replaceAll(':', '-').replace('.', '-')) => {
+  // TODO check if a blob is there
 
   // define endpoint
   const endpoint = 'upload_video.php';
@@ -214,7 +215,7 @@ const uploadVideo = () => {
   const formData = new FormData();
 
   // append the video file (i.e., the recorded blob)
-  formData.append('vidfile', window.blob, 'yes');
+  formData.append('vidfile', window.blob, filename);
 
   // post the file using fetch
   fetch(endpoint, {
