@@ -1,21 +1,4 @@
-// MEDIA CONSTRAINT OBJECT
-// NB https://developer.mozilla.org/en-US/docs/Web/API/MediaTrackConstraints
-// const constraintObj = {
-//   audio: true,
-//   video: true,
-//   // video: {
-//   //   facingMode: "user",
-//   //   width: { min: 640, ideal: 1280, max: 1920 },
-//   //   height: { min: 480, ideal: 720, max: 1080 }
-//   // }
-
-//   // Other useful props:
-//   // width: 1280, height: 720  -- preference only
-//   // facingMode: {exact: "user"} // forcing to be user camera
-//   // facingMode: "environment"
-// };
-
-(function injectShell() {
+const injectShell = () => {
   // MODAL CSS STYLE
   const modalStyle = document.createElement('style');
   modalStyle.innerHTML = `
@@ -78,8 +61,8 @@ padding: 1rem;
 border-radius: 8px;
 }
 `;
+
   // attach modal css style to head
-  // todo: tidy-up the positions
   document.head.appendChild(modalStyle);
 
   // MODAL & VIDEO DOM FRAGMENTS
@@ -96,19 +79,22 @@ border-radius: 8px;
 <a href="#" class="modal-bg"></a>
 </div>
 `);
-  // attach modal DOM fragment to body
-  // todo: tidy-up the position
-  document.body.appendChild(modalDOM);
-}());
 
-// todo embed this into functions
+  // attach modal DOM fragment to body
+  document.body.appendChild(modalDOM);
+};
+
 // handle older browsers that might implement getUserMedia in some way
 if (navigator.mediaDevices === undefined) {
   navigator.mediaDevices = {};
-  navigator.mediaDevices.getUserMedia = (constraintObject = { audio: true, video: true }) => {
+  navigator.mediaDevices.getUserMedia = (
+    constraintObject = { audio: true, video: true },
+  ) => {
     const getUserMedia = navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
     if (!getUserMedia) {
-      return Promise.reject(new Error('getUserMedia is not implemented in this browser'));
+      return Promise.reject(
+        new Error('getUserMedia is not implemented in this browser'),
+      );
     }
     return new Promise((resolve, reject) => {
       getUserMedia.call(navigator, constraintObject, resolve, reject);
@@ -130,12 +116,19 @@ if (navigator.mediaDevices === undefined) {
 
 // UTILITY FUNCTIONS
 const toggleModal = () => {
-  window.location.href = ((window.location.href.indexOf('#greeting-modal') !== -1))
+  // check for injected modal components
+  if (!document.getElementById('greeting-modal')) {
+    injectShell();
+  }
+  window.location.href = window.location.href.indexOf('#greeting-modal') !== -1
     ? '#'
     : '#greeting-modal';
 };
 
 const startWebcamStream = (constraintObject = { audio: true, video: true }) => {
+  if (!document.getElementById('greeting-modal')) {
+    injectShell();
+  }
   navigator.mediaDevices
     .getUserMedia(constraintObject)
     .then((stream) => {
@@ -149,7 +142,7 @@ const startWebcamStream = (constraintObject = { audio: true, video: true }) => {
         video.src = window.URL.createObjectURL(stream);
       }
 
-      // Display stream
+      // Attach stream
       video.onloadedmetadata = () => video.play();
     })
     .catch((err) => console.log(err.name, err.message));
@@ -207,8 +200,8 @@ const playbackRecording = () => {
 };
 
 // upload the blob
-// default filename is an ISO 8601 timestamp (character-adjusted due to filename limitations)
-const uploadVideo = (filename = new Date().toISOString().replaceAll(':', '-').replace('.', '-')) => {
+// default filename (fname) is ISO 8601 timestamp (character-adjusted due to filename limitations)
+const uploadVideo = (fname = new Date().toISOString().replaceAll(':', '-').replace('.', '-')) => {
   if ('blob' in window) {
     // define endpoint
     const endpoint = 'upload_video.php';
@@ -217,7 +210,7 @@ const uploadVideo = (filename = new Date().toISOString().replaceAll(':', '-').re
     const formData = new FormData();
 
     // append the video file (i.e., the recorded blob)
-    formData.append('vidfile', window.blob, filename);
+    formData.append('vidfile', window.blob, fname);
 
     // post the file using fetch
     fetch(endpoint, {
