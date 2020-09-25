@@ -154,10 +154,10 @@ const stopWebcamStream = () => {
   }
 };
 
-const startWebcamRecorder = () => {
+const startWebcamRecorder = (constraintObject = { audio: true, video: true }) => {
   // check if there is an active stream, if not start one
   if (!('localStream' in window && window.localStream.active)) {
-    startWebcamStream();
+    startWebcamStream(constraintObject);
   }
   // todo use a promise here instead of timeout
   setTimeout(() => {
@@ -221,6 +221,7 @@ const uploadVideo = (fname = new Date().toISOString().replaceAll(':', '-').repla
 };
 
 module.exports = {
+  injectShell,
   toggleModal,
   startWebcamStream,
   stopWebcamStream,
@@ -228,5 +229,4 @@ module.exports = {
   stopWebcamRecorder,
   playbackRecording,
   uploadVideo,
-  injectShell,
 };
