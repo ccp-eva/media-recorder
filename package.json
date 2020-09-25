@@ -1,8 +1,8 @@
 {
   "name": "silent-webcam-recorder",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Utility functions for WebRTC to recrod (and upload) a webcam stream.",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
