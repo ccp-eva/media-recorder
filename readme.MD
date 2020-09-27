@@ -1,13 +1,8 @@
-# Silent Webcam Recorder
+# Silent Recorder &middot; [![GitHub package.json version](https://img.shields.io/github/package-json/v/eva-ccp/silent-recorder?label=GitHub%20version)](https://github.com/eva-ccp/silent-recorder/blob/master/package.json) [![npm version](https://img.shields.io/npm/v/@eva-ccp/silent-recorder?label=npm%20version)](https://www.npmjs.com/package/@eva-ccp/silent-recorder) ![npm bundle size](https://img.shields.io/bundlephobia/minzip/@eva-ccp/silent-recorder) [![UNPKG](https://img.shields.io/badge/unpkg-latest-green.svg)](https://unpkg.com/@eva-ccp/silent-recorder)
 
-<p align="center">
 
-![GitHub package.json version](https://img.shields.io/github/package-json/v/kalaschnik/silent-webcam-recorder?label=GitHub%20version)
-![npm](https://img.shields.io/npm/v/silent-webcam-recorder?label=npm%20version)
-![npm bundle size](https://img.shields.io/bundlephobia/minzip/silent-webcam-recorder)
-[![UNPKG](https://img.shields.io/badge/unpkg-latest-green.svg)](https://unpkg.com/silent-webcam-recorder)
 
-</p>
+
 
 > An unobtrusive and DOM-independent JavaScript/npm package providing utility functions to recrod a webcam stream using WebRTC.
 
@@ -26,7 +21,7 @@ You can **either** install the npm package:
 **`npm`**
 
 ```javascript
-npm install silent-webcam-recorder
+npm install @eva-ccp/silent-recorder
 ```
 
 **or** embed the utility functions directly via the `<script>` element using UNPKG CDN.
@@ -38,17 +33,17 @@ npm install silent-webcam-recorder
 Put the following line in your HTML file. This will pull the latest version.
 
 ```html
-<script src="https://unpkg.com/silent-webcam-recorder" async></script>
+<script src="https://unpkg.com/@eva-ccp/silent-recorder" async></script>
 ```
 
 Note, you can safely use the `async` attribute here, as the required DOM components are included in the js file.
 
 ### Offline Support
-You can either use the npm version (and a bundler) and start a local server; or, you can copy the JavaScript file from the CDN (i.e., `https://unpkg.com/silent-webcam-recorder`), and adjust the `src` attribute to point to your location.
+You can either use the npm version (and a bundler) and start a local server; or, you can copy the JavaScript file from the CDN (i.e., `https://unpkg.com/@eva-ccp/silent-recorder`), and adjust the `src` attribute to point to your location.
 
 
 ## Example
-If you clone this repository (or [download and unzip](https://github.com/Kalaschnik/silent-webcam-recorder/archive/master.zip)), you’ll find an `example.html`, which showcases all utility functions using buttons. If you, locally, want to try the file upload, you need a running PHP server. For local development I recommend [PHP Server for VS Code](https://marketplace.visualstudio.com/items?itemName=brapifra.phpserver)).
+If you clone this repository (or [download and unzip](https://github.com/eva-ccp/silent-recorder/archive/master.zip)), you’ll find an `example.html`, which showcases all utility functions using buttons. If you, locally, want to try the file upload, you need a running PHP server. For local development I recommend [PHP Server for VS Code](https://marketplace.visualstudio.com/items?itemName=brapifra.phpserver)).
 
 ## Usage
 
@@ -82,6 +77,6 @@ move_uploaded_file($_FILES["vidfile"]["tmp_name"], $target_path );
 
 ## Development Setup
 
-1. `git clone git@github.com:Kalaschnik/silent-webcam-recorder.git`
+1. `git clone git@github.com:eva-ccp/silent-recorder.git`
 2. `npm install`
 3. I’m following ESLint/AirBnB styleguide (see devDependency)
