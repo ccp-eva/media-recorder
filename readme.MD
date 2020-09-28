@@ -8,11 +8,11 @@
 
 ## About “Silent”
 
-There is no actual *silent* way to access a user’s webcam, which is good. Browser vendors require their users to give explicit consent when a website tries to access a media device. This package is no acception:
+There is no actual *silent* way to access a user’s webcam, which is good. Browser vendors require their users to give explicit consent when a website tries to access a media device. This package is no exception:
 <center>
 <img src="./docs/sr.gif" width="300px">
 </center>
-However, once a user gave consent to a particular website, a browser may use the allowed media devices at any time. This can happen in the background, in unobtrusive, silent manner.
+However, once a user gave consent to a particular website, a browser may use the allowed media devices at any time. This can happen in the background, in an unobtrusive, silent manner.
 
 
 ## Installation
