@@ -1,7 +1,9 @@
 {
   "name": "@ccp-eva/silent-recorder",
-  "publishConfig": { "access": "public" },
-  "version": "1.0.6",
+  "publishConfig": {
+    "access": "public"
+  },
+  "version": "1.0.8",
   "description": "Utility functions for WebRTC to recrod (and upload) a webcam stream.",
   "main": "src/index.js",
   "scripts": {
