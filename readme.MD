@@ -1,17 +1,27 @@
 # Silent Recorder &middot; [![GitHub package.json version](https://img.shields.io/github/package-json/v/ccp-eva/silent-recorder?label=GitHub%20version)](https://github.com/ccp-eva/silent-recorder/blob/master/package.json) [![npm version](https://img.shields.io/npm/v/@ccp-eva/silent-recorder?label=npm%20version)](https://www.npmjs.com/package/@ccp-eva/silent-recorder) ![npm bundle size](https://img.shields.io/bundlephobia/minzip/@ccp-eva/silent-recorder) [![UNPKG](https://img.shields.io/badge/unpkg-latest-green.svg)](https://unpkg.com/@ccp-eva/silent-recorder)
 
 
-
-
-
 > An unobtrusive and DOM-independent JavaScript/npm package that provides utility functions to record a webcam stream using WebRTC.
+
+----
+
+<p align="center">
+  <a href="https://codepen.io/Kalaschnik/pen/gOrJOYb?editors=1000" target="_blank">
+  <strong>🚀 Demo on</strong><br />
+  <img src="https://blog.codepen.io/wp-content/uploads/2012/06/codepen-wordmark-display-inside-black@10x.png" width="150px" />
+  </a>
+</p>
+
+------
 
 ## About “Silent”
 
 There is no actual *silent* way to access a user’s webcam, which is good. Browser vendors require their users to give explicit consent when a website tries to access a media device. This package is no exception:
-<center>
-<img src="./docs/sr.gif" width="300px">
-</center>
+
+<p align="center">
+  <img src="./docs/sr.gif" width="300px">
+</p>
+
 However, once a user consents to a particular website, a browser may use the allowed media devices at any time. Accessing these devices can happen in the background, in an unobtrusive, silent manner.
 
 
@@ -42,7 +52,14 @@ Note, you can safely use the `async` attribute here, as the required DOM compone
 You can either use the npm version (and a bundler) and start a local server; or, you can copy the JavaScript file from the CDN (i.e., `https://unpkg.com/@ccp-eva/silent-recorder`), and adjust the `src` attribute to point to your location.
 
 
-## Example
+## Examples
+
+You can see a working demo on CodePen (w/o upload function):
+### **Demo** https://codepen.io/Kalaschnik/pen/gOrJOYb?editors=1000
+
+> *Note, read here about [how upload works](#endpoint-for-uploading)*
+
+#### example.html
 If you clone this repository (or [download and unzip](https://github.com/ccp-eva/silent-recorder/archive/master.zip)), you’ll find an `example.html`, which showcases all utility functions using buttons. If you, locally, want to try the file upload, you need a running PHP server. For local development, I recommend [PHP Server for VS Code](https://marketplace.visualstudio.com/items?itemName=brapifra.phpserver)).
 
 ## Usage
