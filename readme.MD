@@ -4,7 +4,7 @@
 
 
 
-> An unobtrusive and DOM-independent JavaScript/npm package providing utility functions to recrod a webcam stream using WebRTC.
+> An unobtrusive and DOM-independent JavaScript/npm package that provides utility functions to record a webcam stream using WebRTC.
 
 ## About “Silent”
 
@@ -12,7 +12,7 @@ There is no actual *silent* way to access a user’s webcam, which is good. Brow
 <center>
 <img src="./docs/sr.gif" width="300px">
 </center>
-However, once a user gave consent to a particular website, a browser may use the allowed media devices at any time. This can happen in the background, in an unobtrusive, silent manner.
+However, once a user consents to a particular website, a browser may use the allowed media devices at any time. Accessing these devices can happen in the background, in an unobtrusive, silent manner.
 
 
 ## Installation
@@ -43,11 +43,11 @@ You can either use the npm version (and a bundler) and start a local server; or,
 
 
 ## Example
-If you clone this repository (or [download and unzip](https://github.com/eva-ccp/silent-recorder/archive/master.zip)), you’ll find an `example.html`, which showcases all utility functions using buttons. If you, locally, want to try the file upload, you need a running PHP server. For local development I recommend [PHP Server for VS Code](https://marketplace.visualstudio.com/items?itemName=brapifra.phpserver)).
+If you clone this repository (or [download and unzip](https://github.com/eva-ccp/silent-recorder/archive/master.zip)), you’ll find an `example.html`, which showcases all utility functions using buttons. If you, locally, want to try the file upload, you need a running PHP server. For local development, I recommend [PHP Server for VS Code](https://marketplace.visualstudio.com/items?itemName=brapifra.phpserver)).
 
 ## Usage
 
-Regardless [how you install](#installation) the package, there are serveral utility functions you can use:
+Regardless of [how you install](#installation) the package, there are several utility functions you can use:
 
 | Utility Function | Description |
 |-|-|
@@ -55,7 +55,7 @@ Regardless [how you install](#installation) the package, there are serveral util
 | `startWebcamStream({obj})` | starts a webcam stream w/o recording it |
 | `stopWebcamStream()` | stops all active webcam streams |
 | `startWebcamRecorder({obj})` | starts a webcam stream (if not active) and starts recording |
-| `stopWebcamRecorder()` | stops the recording, creates a videofile, stops the webcam stream |
+| `stopWebcamRecorder()` | stops the recording, creates a video file, stops the webcam stream |
 | `playbackRecording()` | opens the modal to view the recording |
 | `uploadVideo("filename")` | Uploads the recording using a given "filename". If no argument is provided, the filename defaults to a ISO 8601 timestamp. [See notes about uploading.](#endpoint-for-uploading) |
 
