@@ -1,7 +1,7 @@
 {
-  "name": "@eva-ccp/silent-recorder",
+  "name": "@ccp-eva/silent-recorder",
   "publishConfig": { "access": "public" },
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Utility functions for WebRTC to recrod (and upload) a webcam stream.",
   "main": "src/index.js",
   "scripts": {
@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/eva-ccp/silent-recorder.git"
+    "url": "git+https://github.com/ccp-eva/silent-recorder.git"
   },
   "keywords": [
     "WebRTC",
@@ -22,9 +22,9 @@
   "author": "Steven Kalinke",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/eva-ccp/silent-recorder/issues"
+    "url": "https://github.com/ccp-eva/silent-recorder/issues"
   },
-  "homepage": "https://github.com/eva-ccp/silent-recorder#readme",
+  "homepage": "https://github.com/ccp-eva/silent-recorder#readme",
   "dependencies": {},
   "devDependencies": {
     "eslint": "^7.9.0",
