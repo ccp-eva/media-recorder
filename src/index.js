@@ -29,7 +29,7 @@ transform: translateY(0);
 opacity: 1;
 }
 
-/* Modal Container Styles */
+  /* Modal Container Styles for flex box */
 .modal-container {
 position: fixed;
 top: 0;
@@ -39,6 +39,7 @@ bottom: 0;
 display: flex;
 justify-content: center;
 align-items: center;
+    backdrop-filter: blur(5px);
 }
 
 /* Modal Background Styles */
@@ -56,10 +57,17 @@ backdrop-filter: blur(5px);
 .modal {
 z-index: 1;
 background-color: white;
-width: min-content;
+    width: max-content; /* 500px */
 padding: 1rem;
 border-radius: 8px;
 }
+  
+  .modal-close {
+    padding-top: 8px;
+    text-align: right;
+    font-size: small;
+    font-weight: 700;
+  }
 `;
 
   // attach modal css style to head
@@ -69,11 +77,15 @@ border-radius: 8px;
   const modalDOM = document.createRange().createContextualFragment(`
 <!-- Modal container -->
 <div class="modal-container" id="greeting-modal">
+
 <!-- Modal  -->
 <div class="modal">
+      <div id="modal-content">
 <video id="video-preview" muted></video>
 <video id="video-playback" controls style="display: none"></video>
 </div>
+      <p class="modal-close"><a href="#">CLOSE ❌</a></p>
+    </div>
 
 <!-- Background, click to close -->
 <a href="#" class="modal-bg"></a>
