@@ -4,26 +4,29 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>WebRTC Webcam Demo</title>
+  <title>Silent Recorder Demo</title>
   <script src="index.js" async></script>
 </head>
 
 <body>
-  <h1>Silent Webcam Recorder</h1>
+  <h1>Silent Recorder Demo</h1>
   <hr />
   <h2>1 Utility Functions</h2>
 
   If you use the CDN, the following functions are loaded into the window object, and thus work from everywhere; you can test them in your browser’s console.
 
-  <ul style="list-style-type: none">
-    <li><code>toggleModal() ⮕ show/hide the modal UI</code></li>
-    <li><code>startWebcamStream() ⮕ starts a webcam stream w/o recording it</code></li>
-    <li><code>stopWebcamStream() ⮕ stops all active webcam streams</code></li>
-    <li><code>startWebcamRecorder() ⮕ starts a webcamstream (if not active) and starts recording</code></li>
-    <li><code>stopWebcamRecorder() ⮕ stops the recording, creates the videofile, stops the webcam stream</code></li>
-    <li><code>playbackRecording() ⮕ opens the modal to view the recording</code></li>
-    <li><code>uploadVideo(filename) ⮕ uploads* the recording (filename defaults to ISO 8601 timestamp)</code></li>
-  </ul>
+  <small>
+    <ul style="list-style-type: none">
+      <li><code>toggleModal() ⮕ show/hide the modal UI</code></li>
+      <li><code>modalContent("html") ⮕ set modal content (pass "#video-preview" or "#video-playback" to load video elements)</code></li>
+      <li><code>startStream() ⮕ starts a webcam stream w/o recording it</code></li>
+      <li><code>stopStream() ⮕ stops all active webcam streams</code></li>
+      <li><code>startRecorder() ⮕ starts a webcamstream (if not active) and starts recording</code></li>
+      <li><code>stopRecorder() ⮕ stops the recording, creates the videofile, stops the webcam stream</code></li>
+      <li><code>playbackRecording() ⮕ opens the modal to view the recording</code></li>
+      <li><code>uploadVideo("filename", {uploadContent: "Up↑", successContent: "✔"}) ⮕ uploads* the recording (filename defaults to ISO 8601 timestamp)</code></li>
+    </ul>
+  </small>
 
 
   <h2>2 Demonstration</h2>
@@ -31,24 +34,27 @@
   You can <strong>run the buttons sequentially</strong> to see the effect.
 
   <ol>
-    <li><button onclick="toggleModal()">Open Modal UI</button> ⮕ No webcam stream loaded
-      (empty modal)</li>
-    <li><button onclick="startWebcamStream()">Start Webcam Stream</button> ⮕ starts a webcam stream w/o recording it
-    </li>
-    <li><button onclick="toggleModal()">Open Modal UI</button> ⮕ You should see yourself</li>
-    <li><button onclick="stopWebcamStream()">Stop Webcam Stream</button> ⮕ stops all active webcam streams</li>
-    <li><button onclick="startWebcamRecorder()">Start Webcam Recorder</button> ⮕ starts a webcamstream (if not active)
-      and starts recording</li>
-    <li><button onclick="toggleModal()">Open Modal UI</button> ⮕ You should see yourself (you
-      get recorded now)</li>
-    <li><button onclick="stopWebcamRecorder()">Stop Webcam Recorder</button> ⮕ stops the recording, creates the
-      videofile, stops the webcam stream</li>
-    <li><button onclick="playbackRecording()">Playback Recording</button> ⮕ opens the modal to view the recording </li>
-    <li><button onclick="uploadVideo()">Upload Recorded Video</button> ⮕ uploads* the recording (filename defaults to
-      ISO
-      8601 timestamp)</li>
+    <li><button onclick="toggleModal()">Open Modal UI</button> ⮕ no webcam stream loaded / empty modal</li>
+    <li><button onclick="startStream()">Start Webcam Stream</button> ⮕ starts a webcam stream w/o recording it</li>
+    <li><button onclick="modalContent('#video-preview')">Set Modal Content</button> ⮕ set modal content to "#video-preview". You should see yourself.</li>
+    <li><button onclick="stopStream()">Stop Stream</button> ⮕ stops all active webcam streams</li>
+    <li><button onclick="startRecorder()">Start Recorder</button> ⮕ starts a webcam stream (if not active) and starts recording</li>
+    <li><button onclick="modalContent('#video-preview')">Set Modal Content</button> ⮕ set modal content to "#video-preview". You should see yourself & you get recorded now :)</li>
+    <li><button onclick="stopRecorder()">Stop Webcam Recorder</button> ⮕ stops the recording, creates the videofile, stops the webcam stream</li>
+    <li><button onclick="modalContent('#video-playback')">Set Modal Content</button> ⮕ set modal content to "#video-playback". You see your recording. </li>
+    <li>
+      <button onclick="
+        uploadVideo(
+          {
+            uploadContent: `<img src='spinner-upload.svg' width='800px';>`,
+            uploadColor: `#E1B4B4`,
+            successContent: `<img src='spinner-done.svg' width='800px';>`,
+            successColor: `#D3F9D3`
+          }
+        )"
+      >Upload Recorded Video</button> ⮕ uploads* the recording (filename defaults to ISO 8601 timestamp)</li>
   </ol>
-
+  
   <small>
     * You need to have a server-side endpoint for this function. PHP example:
     <pre>
@@ -57,7 +63,6 @@
     </pre>
 
   </small>
-
 
 </body>
 

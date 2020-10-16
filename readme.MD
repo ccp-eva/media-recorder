@@ -69,14 +69,14 @@ Regardless of [how you install](#installation) the package, there are several ut
 | Utility Function | Description |
 |-|-|
 | `toggleModal()` | show/hide the modal UI (if no active stream, you’ll see a blank screen) |
-| `startWebcamStream({obj})` | starts a webcam stream w/o recording it |
-| `stopWebcamStream()` | stops all active webcam streams |
-| `startWebcamRecorder({obj})` | starts a webcam stream (if not active) and starts recording |
-| `stopWebcamRecorder()` | stops the recording, creates a video file, stops the webcam stream |
-| `playbackRecording()` | opens the modal to view the recording |
+| `modalContent("html")` | Pass modal content as `html` (e.g., `modalContent("<h1>Hello</h1>")`). You can also pass the predefined strings: `#video-preview` or `#video-playback` to load the corresponding video elements. Note that calling `modalContent()` always opens the modal afterwards. |
+| `startStream({obj})` | starts a webcam stream w/o recording it |
+| `stopStream()` | stops all active webcam streams |
+| `startRecorder({obj})` | starts a webcam stream (if not active) and starts recording |
+| `stopRecorder()` | stops the recording, creates a video file, stops the webcam stream |
 | `uploadVideo("filename")` | Uploads the recording using a given "filename". If no argument is provided, the filename defaults to a ISO 8601 timestamp. [See notes about uploading.](#endpoint-for-uploading) |
 
-For `startWebcamStream({obj})` and `startWebcamRecorder({obj})` you can pass a [MediaTrackConstraints Object](https://developer.mozilla.org/en-US/docs/Web/API/MediaTrackConstraints) as an argument, which allows you define what media tracks (e.g., video, audio) should be recorded, and how they should be recorded (e.g., resolution, fps, facing mode). When providing no arguments, both functions default to `{audio: true, video: true}`.  
+For `startStream({obj})` and `startRecorder({obj})` you can pass a [MediaTrackConstraints Object](https://developer.mozilla.org/en-US/docs/Web/API/MediaTrackConstraints) as an argument, which allows you define what media tracks (e.g., video, audio) should be recorded, and how they should be recorded (e.g., resolution, fps, facing mode). When providing no arguments, both functions default to `{audio: true, video: true}`.  
 See https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/getUserMedia for examples you can provide to both functions.
 
 ### Endpoint for Uploading
