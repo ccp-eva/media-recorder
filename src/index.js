@@ -208,8 +208,21 @@ const startRecorder = (constraintObject = { audio: true, video: { facingMode: 'u
   }
   // todo use a promise here instead of timeout
   setTimeout(() => {
+    let options = { mimeType: 'video/webm;codecs=vp9,opus' };
+    if (!MediaRecorder.isTypeSupported(options.mimeType)) {
+      console.error(`${options.mimeType} is not supported`);
+      options = { mimeType: 'video/webm;codecs=vp8,opus' };
+      if (!MediaRecorder.isTypeSupported(options.mimeType)) {
+        console.error(`${options.mimeType} is not supported`);
+        options = { mimeType: 'video/webm' };
+        if (!MediaRecorder.isTypeSupported(options.mimeType)) {
+          console.error(`${options.mimeType} is not supported`);
+          options = { mimeType: '' };
+        }
+      }
+    }
     // recrod stream
-    window.mediaRecorder = new MediaRecorder(window.localStream); // todo add options: https://github.com/webrtc/samples/blob/gh-pages/src/content/getusermedia/record/js/main.js
+    window.mediaRecorder = new MediaRecorder(window.localStream, options);
     window.dataChunks = [];
     window.mediaRecorder.start();
     console.log(window.mediaRecorder.state);
