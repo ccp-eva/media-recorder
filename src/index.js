@@ -172,7 +172,7 @@ const modalContent = (htmlContent, backgroundColor = 'white') => {
   window.location.href = '#greeting-modal';
 };
 
-const startStream = (constraintObject = { audio: true, video: { facingMode: 'user' } }) => {
+const startStream = (constraintObject = { audio: true, video: { facingMode: 'user', frameRate: 15 } }) => {
   if (!document.getElementById('greeting-modal')) {
     injectShell();
   }
@@ -201,7 +201,7 @@ const stopStream = () => {
   }
 };
 
-const startRecorder = (constraintObject = { audio: true, video: { facingMode: 'user' } }) => {
+const startRecorder = (constraintObject = { audio: true, video: { facingMode: 'user' }, frameRate: 15 }) => {
   // check if there is an active stream, if not start one
   if (!('localStream' in window && window.localStream.active)) {
     startStream(constraintObject);

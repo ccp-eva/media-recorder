@@ -85,11 +85,17 @@ You need to have a server-side endpoint for this function. Right now, this funct
 
 `upload_video.php`
 ```php
-$target_path = "uploads/" . basename($_FILES["vidfile"]["name"] . ".mp4");
+$target_path = "uploads/" . basename($_FILES["vidfile"]["name"] . ".webm");
 move_uploaded_file($_FILES["vidfile"]["tmp_name"], $target_path );
 ```
 
+`php.ini`
 
+Change php’s `post_max_size` and `upload_max_filesize` accordingly in your `php.ini`, if your video is likely to exceed the default 2MB limitation:
+```php
+post_max_size = 105M
+upload_max_filesize = 100M
+```
 
 
 ## Development Setup
