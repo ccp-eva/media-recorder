@@ -2,17 +2,9 @@
 
 
 > An unobtrusive and DOM-independent JavaScript/npm package that provides utility functions to record a webcam stream using WebRTC.
+> #### [🚀 CodePen Demo](https://codepen.io/Kalaschnik/pen/gOrJOYb?editors=1000)
 
 ----
-
-<p align="center">
-  <a href="https://codepen.io/Kalaschnik/pen/gOrJOYb?editors=1000" target="_blank">
-  <strong>🚀 Demo on</strong><br />
-  <img src="https://blog.codepen.io/wp-content/uploads/2012/06/codepen-wordmark-display-inside-black@10x.png" width="150px" />
-  </a>
-</p>
-
-------
 
 ## About “Silent”
 
