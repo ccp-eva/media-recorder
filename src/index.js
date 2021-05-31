@@ -299,7 +299,7 @@ const uploadVideo = (modalObj) => {
   }
 };
 
-export default {
+module.exports = {
   injectShell,
   toggleModal,
   startStream,
