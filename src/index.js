@@ -137,9 +137,10 @@ const toggleModal = () => {
   if (!document.getElementById('greeting-modal')) {
     injectShell();
   }
-  window.location.href = window.location.href.indexOf('#greeting-modal') !== -1
-    ? '#'
-    : '#greeting-modal';
+  window.location.href =
+    window.location.href.indexOf('#greeting-modal') !== -1
+      ? '#'
+      : '#greeting-modal';
 };
 
 const modalContent = (htmlContent, backgroundColor = 'white') => {
@@ -172,7 +173,12 @@ const modalContent = (htmlContent, backgroundColor = 'white') => {
   window.location.href = '#greeting-modal';
 };
 
-const startStream = (constraintObject = { audio: true, video: { facingMode: 'user', frameRate: 15 } }) => {
+const startStream = (
+  constraintObject = {
+    audio: true,
+    video: { facingMode: 'user', frameRate: 15 },
+  }
+) => {
   if (!document.getElementById('greeting-modal')) {
     injectShell();
   }
@@ -201,7 +207,13 @@ const stopStream = () => {
   }
 };
 
-const startRecorder = (constraintObject = { audio: true, video: { facingMode: 'user' }, frameRate: 15 }) => {
+const startRecorder = (
+  constraintObject = {
+    audio: true,
+    video: { facingMode: 'user' },
+    frameRate: 15,
+  }
+) => {
   // check if there is an active stream, if not start one
   if (!('localStream' in window && window.localStream.active)) {
     startStream(constraintObject);
@@ -226,7 +238,8 @@ const startRecorder = (constraintObject = { audio: true, video: { facingMode: 'u
     window.dataChunks = [];
     window.mediaRecorder.start();
     console.log(window.mediaRecorder.state);
-    window.mediaRecorder.ondataavailable = (e) => window.dataChunks.push(e.data);
+    window.mediaRecorder.ondataavailable = (e) =>
+      window.dataChunks.push(e.data);
   }, 2000);
 };
 
@@ -286,7 +299,8 @@ const uploadVideo = (modalObj) => {
     fetch(endpoint, {
       method: 'POST',
       body: formData, // formData
-    }).then()
+    })
+      .then()
       .then(() => {
         // release closing lock
         window.onbeforeunload = null;
