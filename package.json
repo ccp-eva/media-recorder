@@ -3,11 +3,12 @@
   "publishConfig": {
     "access": "public"
   },
-  "version": "1.1.5",
+  "version": "2.0.0",
   "description": "Utility functions for WebRTC to recrod (and upload) a webcam stream.",
-  "main": "src/index.js",
+  "main": "dist/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "webpack serve",
+    "build": "NODE_ENV=production webpack"
   },
   "repository": {
     "type": "git",
@@ -31,6 +32,9 @@
   "devDependencies": {
     "eslint": "^7.9.0",
     "eslint-config-airbnb-base": "^14.2.0",
-    "eslint-plugin-import": "^2.22.0"
+    "eslint-plugin-import": "^2.22.0",
+    "webpack": "^5.38.1",
+    "webpack-cli": "^4.7.0",
+    "webpack-dev-server": "^3.11.2"
   }
 }

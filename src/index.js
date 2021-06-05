@@ -1,3 +1,4 @@
+console.log('---');
 const injectShell = () => {
   // MODAL CSS STYLE
   const modalStyle = document.createElement('style');
@@ -313,7 +314,7 @@ const uploadVideo = (modalObj) => {
   }
 };
 
-module.exports = {
+export {
   injectShell,
   toggleModal,
   startStream,
