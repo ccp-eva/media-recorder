@@ -7,6 +7,10 @@ import { stopStream } from './components/stopStream';
 import { startRecorder } from './components/startRecorder';
 import { stopRecorder } from './components/stopRecorder';
 import { uploadVideo } from './components/uploadVideo';
+import {
+  toggleVideoPreview,
+  toggleVideoPlayback,
+} from './components/toggleStream';
 
 injectShell();
 logMediaDevices();
@@ -17,6 +21,8 @@ logMediaDevices();
 export {
   injectShell,
   toggleModal,
+  toggleVideoPreview,
+  toggleVideoPlayback,
   startStream,
   stopStream,
   startRecorder,
