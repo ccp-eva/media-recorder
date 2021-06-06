@@ -1,4 +1,4 @@
-import injectShell from './injectShell';
+import { injectShell } from './injectShell';
 
 export const startStream = (
   constraintObject = {
