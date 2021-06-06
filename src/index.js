@@ -1,12 +1,12 @@
-import { injectShell } from './functions/injectShell';
-import { toggleModal } from './functions/toggleModal';
-import { logMediaDevices } from './functions/logMediaDevices';
-import { modalContent } from './functions/modalContent';
-import { startStream } from './functions/startStream';
-import { stopStream } from './functions/stopStream';
-import { startRecorder } from './functions/startRecorder';
-import { stopRecorder } from './functions/stopRecorder';
-import { uploadVideo } from './functions/uploadVideo';
+import { injectShell } from './components/injectShell';
+import { toggleModal } from './components/toggleModal';
+import { logMediaDevices } from './components/logMediaDevices';
+import { modalContent } from './components/modalContent';
+import { startStream } from './components/startStream';
+import { stopStream } from './components/stopStream';
+import { startRecorder } from './components/startRecorder';
+import { stopRecorder } from './components/stopRecorder';
+import { uploadVideo } from './components/uploadVideo';
 
 injectShell();
 logMediaDevices();
