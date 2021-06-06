@@ -1,3 +1,7 @@
+// Webpack Plugins
+const CopyPlugin = require('copy-webpack-plugin');
+
+// Node
 const path = require('path');
 
 const mode = process.env.NODE_ENV || 'development';
@@ -13,6 +17,12 @@ module.exports = {
       type: 'umd',
     },
   },
+
+  plugins: [
+    new CopyPlugin({
+      patterns: [{ from: 'public/', to: './' }],
+    }),
+  ],
 
   devtool: 'source-map',
   devServer: {
