@@ -1,5 +1,5 @@
 // Webpack Plugins
-const CopyPlugin = require('copy-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 // Node
 const path = require('path');
@@ -19,7 +19,7 @@ module.exports = {
   },
 
   plugins: [
-    new CopyPlugin({
+    new CopyWebpackPlugin({
       patterns: [{ from: 'public/', to: './' }],
     }),
   ],
