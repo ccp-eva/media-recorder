@@ -15,8 +15,21 @@ import { uploadVideo } from './components/uploadVideo';
 injectShell();
 logMediaDevices();
 
-// window.injectShell = injectShell;
-// window.toggleModal = toggleModal;
+// Attaching functions to window object for development!
+if (process.env.NODE_ENV !== 'production') {
+  console.log('functions exposed to window object');
+  window.injectShell = injectShell;
+  window.logMediaDevices = logMediaDevices;
+  window.toggleModal = toggleModal;
+  window.toggleVideoPreview = toggleVideoPreview;
+  window.toggleVideoPlayback = toggleVideoPlayback;
+  window.modalContent = modalContent;
+  window.startStream = startStream;
+  window.stopStream = stopStream;
+  window.startRecorder = startRecorder;
+  window.stopRecorder = stopRecorder;
+  window.uploadVideo = uploadVideo;
+}
 
 export {
   injectShell,
