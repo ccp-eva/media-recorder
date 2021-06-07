@@ -1,5 +1,5 @@
 export const modalContent = (
-  htmlContent = '<strong><em>Nothing</em> to show!</strong>',
+  htmlContent = '<h1>Hi</h1>',
   backgroundColor = 'deeppink',
 ) => {
   const getModalContent = document.getElementById('modal-content');
