@@ -1,9 +1,9 @@
 import { modalContent } from './modalContent';
 
-export const toggleVideoPreview = () => {
+export const openVideoPreview = () => {
   modalContent('#video-preview');
 };
 
-export const toggleVideoPlayback = () => {
+export const openVideoPlayback = () => {
   modalContent('#video-playback');
 };
