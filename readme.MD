@@ -1,79 +1,158 @@
-# Silent Recorder &middot; [![GitHub package.json version](https://img.shields.io/github/package-json/v/ccp-eva/silent-recorder?label=GitHub%20version)](https://github.com/ccp-eva/silent-recorder/blob/master/package.json) [![npm version](https://img.shields.io/npm/v/@ccp-eva/silent-recorder?label=npm%20version)](https://www.npmjs.com/package/@ccp-eva/silent-recorder) ![npm bundle size](https://img.shields.io/bundlephobia/minzip/@ccp-eva/silent-recorder) [![UNPKG](https://img.shields.io/badge/unpkg-latest-green.svg)](https://unpkg.com/@ccp-eva/silent-recorder)
+# mRec — Media Recorder &middot; [![GitHub package.json version](https://img.shields.io/github/package-json/v/ccp-eva/media-recorder?label=GitHub%20version)](https://github.com/ccp-eva/media-recorder/blob/master/package.json) [![npm version](https://img.shields.io/npm/v/@ccp-eva/media-recorder?label=npm%20version)](https://www.npmjs.com/package/@ccp-eva/media-recorder) ![npm bundle size](https://img.shields.io/bundlephobia/minzip/@ccp-eva/media-recorder) [![UNPKG](https://img.shields.io/badge/unpkg-latest-green.svg)](https://unpkg.com/@ccp-eva/media-recorder)
 
-> An unobtrusive and DOM-independent JavaScript/npm package that provides utility functions to record a webcam stream using WebRTC.
+> An unobtrusive and DOM-independent JavaScript/npm package (UMD) providing utility functions to record a webcam stream using WebRTC.
 >
-> #### [🚀 CodePen Demo](https://codepen.io/Kalaschnik/pen/gOrJOYb?editors=1000)
+> ### [🚀 CodePen Demo](https://codepen.io/Kalaschnik/pen/gOrJOYb?editors=1000) (under construction)
 
 ---
 
-## About “Silent”
-
-There is no actual _silent_ way to access a user’s webcam, which is good. Browser vendors require their users to give explicit consent when a website tries to access a media device. This package is no exception:
-
-<p align="center">
-  <img src="./docs/sr.gif" width="300px">
-</p>
-
-However, once a user consents to a particular website, a browser may use the allowed media devices at any time. Accessing these devices can happen in the background, in an unobtrusive, silent manner.
+## Support & Limitations
 
 ## Installation
 
-You can **either** install the npm package:
+As of version 2, this package uses [webpack](https://webpack.js.org/) to simplify development (see [development section](#development--contribution)) and streamline the bundle output. That entails that this package now follows the UMD pattern, which allows it to be used within the following module systems: CJS, AMD, and ESM ([check this article](https://dev.to/iggredible/what-the-heck-are-cjs-amd-umd-and-esm-ikm) if you want to learn more about these systems).
 
-**`npm`**
+The following snippets demonstrate **how you can integrate this package into your project**.
 
-```javascript
-npm install @ccp-eva/silent-recorder
-```
+### CDN (quick and easy)
 
-**or** embed the utility functions directly via the `<script>` element using UNPKG CDN.
+#### Step 1 — Setup
 
-<br>
-
-**`<script>`**
-
-Put the following line in your HTML file. This will pull the latest version.
+Put the following line in the `head` section of your `HTML` file:
 
 ```html
-<script src="https://unpkg.com/@ccp-eva/silent-recorder" async></script>
+<!-- index.html -->
+<script src="https://unpkg.com/@ccp-eva/media-recorder" async></script>
 ```
 
-Note, you can safely use the `async` attribute here, as the required DOM components are included in the js file.
+**Notes**
 
-### Offline Support
+- You can safely use the `async` attribute here, as the required DOM components are included in the js file. You can also put that line at the very end of your `body` if you feel like it
+- This line automatically resolves to the latest version (try it in your browser: [https://unpkg.com/@ccp-eva/media-recorder](https://unpkg.com/@ccp-eva/media-recorder) and observe the URL). Yet, if you need a specific version, you can [browse available versions on npm](https://www.npmjs.com/package/@ccp-eva/media-recorder?activeTab=versions). Knowing a valid version tag, you can specify an explicit version as such: https://unpkg.com/@ccp-eva/media-recorder@1.1.3 (legacy version)
+- You can also download the JavaScript file and run it without needing an internet connection
 
-You can either use the npm version (and a bundler) and start a local server; or, you can copy the JavaScript file from the CDN (i.e., `https://unpkg.com/@ccp-eva/silent-recorder`), and adjust the `src` attribute to point to your location.
+#### Step 2 — Usage
 
-## Examples
+Inserting the script under step 1 will add a global(!) property named: _**`mrec`**_ to your window object. Thus, you can access the utility functions/components by prepending them with `mrec` (see [what functions are available here](#functions-overview)).
 
-You can see a working demo on CodePen (w/o upload function):
+##### Examples
 
-### **Demo** https://codepen.io/Kalaschnik/pen/gOrJOYb?editors=1000
+###### HTML
 
-> _Note, read here about [how upload works](#endpoint-for-uploading)_
+```html
+<!-- index.html -->
+<button id="toggle-btn" onclick="mrec.toggleModal()"></button>
+<!-- OR -->
+<button id="toggle-btn" onclick="window.mrec.toggleModal()"></button>
+```
 
-#### example.html
+Similarily you may also use JavaScript to attach event listeners:
 
-If you clone this repository (or [download and unzip](https://github.com/ccp-eva/silent-recorder/archive/master.zip)), you’ll find an `example.html`, which showcases all utility functions using buttons. If you, locally, want to try the file upload, you need a running PHP server. For local development, I recommend [PHP Server for VS Code](https://marketplace.visualstudio.com/items?itemName=brapifra.phpserver)).
+###### JavaScript
 
-## Usage
+```javascript
+// index.js
+const toggleButton = document.getElementById('toggle-btn');
+toggleButton.addEventListener('click', mrec.toggleModal);
+```
 
-Regardless of [how you install](#installation) the package, there are several utility functions you can use:
+### npm
 
-| Utility Function          | Description                                                                                                                                                                                                                                                            |
-| ------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `toggleModal()`           | show/hide the modal UI (if no active stream, you’ll see a blank screen)                                                                                                                                                                                                |
-| `modalContent("html")`    | Pass modal content as `html` (e.g., `modalContent("<h1>Hello</h1>")`). You can also pass the predefined strings: `#video-preview` or `#video-playback` to load the corresponding video elements. Note that calling `modalContent()` always opens the modal afterwards. |
-| `startStream({obj})`      | starts a webcam stream w/o recording it                                                                                                                                                                                                                                |
-| `stopStream()`            | stops all active webcam streams                                                                                                                                                                                                                                        |
-| `startRecorder({obj})`    | starts a webcam stream (if not active) and starts recording                                                                                                                                                                                                            |
-| `stopRecorder()`          | stops the recording, creates a video file, stops the webcam stream                                                                                                                                                                                                     |
-| `uploadVideo("filename")` | Uploads the recording using a given "filename". If no argument is provided, the filename defaults to a ISO 8601 timestamp. [See notes about uploading.](#endpoint-for-uploading)                                                                                       |
+#### Step 1 — Setup
 
-For `startStream({obj})` and `startRecorder({obj})` you can pass a [MediaTrackConstraints Object](https://developer.mozilla.org/en-US/docs/Web/API/MediaTrackConstraints) as an argument, which allows you define what media tracks (e.g., video, audio) should be recorded, and how they should be recorded (e.g., resolution, fps, facing mode). When providing no arguments, both functions default to `{audio: true, video: true}`.  
+```javascript
+npm install @ccp-eva/media-recorder
+```
+
+#### Step 2 — Usage
+
+In order to use npm packages in your browser you need a bundler. The following example uses `webpack`.
+
+```javascript
+npm init -y
+npm i -D webpack webpack webpack-cli
+```
+
+Assuming your `index.js` is in a `src` folder, you can use ESM syntax to import components as such:
+
+```javascript
+// src/index.js
+
+// named import for a single or multiple components
+// import { toggleModal } from '@ccp-eva/media-recorder'
+
+// import all components
+import * as mrec from '@ccp-eva/media-recorder';
+
+// execute toggleModal() function
+mrec.toggleModal();
+```
+
+Assuming your `index.html` is in a `dist` folder and contains:
+
+```html
+<!-- dist/index.html -->
+<html lang="en">
+  <head>
+    <script src="./main.js" async></script>
+  </head>
+  <body></body>
+</html>
+```
+
+Now you should have the following file structure:
+
+```
+my-project
+|- /dist
+  |- index.html
+|- /src
+  |- index.js
+|- package.json
+```
+
+This file structure uses webpack defaults. Thus, if can run:
+
+```javascript
+npx webpack
+```
+
+webpack will create a `main.js` within the `dist` directory. If you now open the `index.html` you will see the empty modal window.
+
+## Functions Overview
+
+Regardless of [how you install](#installation) the package, you can use the following utility functions:
+
+<!-- prettier-ignore -->
+| **Utility Function**<br />(signature:default value)<br />? = optional ! = required parameter | **Description** |
+|---|---|
+| `injectShell()` | Injecting HTML & CSS for the modal UI (you may never need to call this function) |
+| `logMediaDevices(showDeviceKind?:true, showDeviceLabel?:true, showDeviceId?:false)` | Will console.log device type, label and ID |
+| `modalContent(htmlContent?:'<h1>Hi</h1>', backgroundColor?:'deeppink')` | Set the modal content: The first parameter accepts `html` as a string. The second parameter defines the background color of the modal.<br />Example: `modalContent("<h1>Hello</h1>")`. You can also pass the predefined strings: `#video-preview` or `#video-playback` to load the corresponding video elements.<br />Note: Calling `modalContent()` always opens the modal afterwards. |
+| `toggleModal()` | show/hide the modal UI (use modalContent before to set any content) |
+| `openVideoPreview()` | Opens the modal with the video stream by calling implicitly `modalContent('#video-preview')` |
+| `openVideoPlayback()` | Opens the modal off the recorded video by calling implicitly `modalContent('#video-playback')` |
+| `startStream({constraintObject}?:[1])` | starts a webcam stream w/o recording it |
+| `stopStream()` | stops all active webcam streams |
+| `startRecorder({constraintObject}?:[1])` | starts a webcam stream (if not active) and starts recording |
+| `stopRecorder()` | stops the recording, creates a video file, stops the webcam stream |
+| `uploadVideo("filename:")` | Parameters: string (optional)<br />Uploads the recording using given parameter "filename". If no argument is provided, the filename defaults to a ISO 8601 timestamp. [See notes about uploading.](#endpoint-for-uploading) |
+
+[1] `startStream({obj})` and `startRecorder({obj})` allow you tp pass a [MediaTrackConstraints Object](https://developer.mozilla.org/en-US/docs/Web/API/MediaTrackConstraints) as an argument, which allows you define what media tracks (e.g., video, audio) should be recorded, and how they should be recorded (e.g., resolution, fps, facing mode). When providing no arguments, both functions default to:
+
+```javascript
+{
+  audio: true,
+  video: { facingMode: 'user' },
+  frameRate: 15,
+}
+```
+
 See https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/getUserMedia for examples you can provide to both functions.
 
-### Endpoint for Uploading
+## Endpoint for Uploading
+
+For local development, I recommend [PHP Server for VS Code](https://marketplace.visualstudio.com/items?itemName=brapifra.phpserver)).
 
 You need to have a server-side endpoint for this function. Right now, this function only works for PHP.
 
@@ -93,8 +172,27 @@ post_max_size = 105M
 upload_max_filesize = 100M
 ```
 
-## Development Setup
+## Development & Contribution
 
-1. `git clone git@github.com:ccp-eva/silent-recorder.git`
+### Dev Setup
+
+1. `git clone git@github.com:ccp-eva/media-recorder.git`
 2. `npm install`
-3. I’m following ESLint/AirBnB styleguide (see devDependency)
+3. `npm start`
+
+This will launch `webpack-dev-server` (w/ Hot Module Replacement / Auto Refresh).  
+**Note**: To have some easier debugging-time during development, all functions are exposed to the global scope using `process.env.NODE_ENV !== 'production'` defined within the `index.js`.
+
+### Build for Production
+
+1. `git clone git@github.com:ccp-eva/media-recorder.git`
+2. `npm install`
+3. `npm run build`
+
+**Note** This project uses the ESLint/AirBnb linter styles (see `.eslintrc.yml`) and prettier as formatter (see `.prettierrc`). If you do a PR, it would be great if you conform to these.
+
+## Near Future Development
+
+- [ ] Multiple Stream Recording (e.g., Webcam + Screen)
+- [ ] Better Modal UI
+- [ ] Refactor Code Base to conform to WebRTC stanrdards

@@ -1,10 +1,7 @@
 import { injectShell } from './components/injectShell';
 import { logMediaDevices } from './components/logMediaDevices';
 import { toggleModal } from './components/toggleModal';
-import {
-  toggleVideoPreview,
-  toggleVideoPlayback,
-} from './components/toggleStream';
+import { openVideoPreview, openVideoPlayback } from './components/toggleStream';
 import { modalContent } from './components/modalContent';
 import { startStream } from './components/startStream';
 import { stopStream } from './components/stopStream';
@@ -13,7 +10,7 @@ import { stopRecorder } from './components/stopRecorder';
 import { uploadVideo } from './components/uploadVideo';
 
 injectShell();
-logMediaDevices();
+logMediaDevices(true, true, true);
 
 // Attaching functions to window object for development!
 if (process.env.NODE_ENV !== 'production') {
@@ -21,8 +18,8 @@ if (process.env.NODE_ENV !== 'production') {
   window.injectShell = injectShell;
   window.logMediaDevices = logMediaDevices;
   window.toggleModal = toggleModal;
-  window.toggleVideoPreview = toggleVideoPreview;
-  window.toggleVideoPlayback = toggleVideoPlayback;
+  window.openVideoPreview = openVideoPreview;
+  window.openVideoPlayback = openVideoPlayback;
   window.modalContent = modalContent;
   window.startStream = startStream;
   window.stopStream = stopStream;
@@ -35,8 +32,8 @@ export {
   injectShell,
   logMediaDevices,
   toggleModal,
-  toggleVideoPreview,
-  toggleVideoPlayback,
+  openVideoPreview,
+  openVideoPlayback,
   modalContent,
   startStream,
   stopStream,

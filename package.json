@@ -1,5 +1,5 @@
 {
-  "name": "@ccp-eva/silent-recorder",
+  "name": "@ccp-eva/media-recorder",
   "publishConfig": {
     "access": "public"
   },
@@ -12,7 +12,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ccp-eva/silent-recorder.git"
+    "url": "git+https://github.com/ccp-eva/media-recorder.git"
   },
   "keywords": [
     "WebRTC",
@@ -25,9 +25,9 @@
   "author": "Steven Kalinke",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/ccp-eva/silent-recorder/issues"
+    "url": "https://github.com/ccp-eva/media-recorder/issues"
   },
-  "homepage": "https://github.com/ccp-eva/silent-recorder#readme",
+  "homepage": "https://github.com/ccp-eva/media-recorder#readme",
   "dependencies": {},
   "devDependencies": {
     "eslint": "^7.9.0",
