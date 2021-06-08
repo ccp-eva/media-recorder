@@ -1,9 +1,9 @@
 import { modalContent } from './modalContent';
 
 export const openVideoPreview = () => {
-  modalContent('#video-preview');
+  modalContent('#video-preview', 'white');
 };
 
 export const openVideoPlayback = () => {
-  modalContent('#video-playback');
+  modalContent('#video-playback', 'white');
 };
