@@ -1,7 +1,7 @@
 import { injectShell } from './components/injectShell';
 import { logMediaDevices } from './components/logMediaDevices';
 import { toggleModal } from './components/toggleModal';
-import { openVideoPreview, openVideoPlayback } from './components/toggleStream';
+import { openVideoPreview, openVideoPlayback } from './components/openStream';
 import { modalContent } from './components/modalContent';
 import { startStream } from './components/startStream';
 import { stopStream } from './components/stopStream';
