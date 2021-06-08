@@ -3,7 +3,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "version": "2.0.5",
+  "version": "2.0.6",
   "description": "Utility functions for WebRTC to recrod (and upload) a webcam stream.",
   "main": "dist/index-umd.js",
   "scripts": {
