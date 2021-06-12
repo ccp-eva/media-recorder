@@ -1,3 +1,4 @@
+import { modalContent } from './modalContent';
 // upload the blob
 // default filename (fname) is ISO 8601 timestamp (character-adjusted due to filename limitations)
 export const uploadVideo = (modalObj) => {

@@ -3,81 +3,51 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Silent Recorder Demo</title>
+    <!-- <script src="./index-umd.js" async></script> -->
+    <!-- Best to open this with liver server and not with webpack dev-server -->
+    <script
+      crossorigin="anonymous"
+      src="https://unpkg.com/@ccp-eva/media-recorder"
+      async
+    ></script>
+    <title>Media Recorder Demo</title>
   </head>
 
   <body>
-    <h1>Silent Recorder Demo</h1>
+    <h1>Media Recorder Demo</h1>
     <mark
       >📚 Please see the
-      <a href="https://github.com/ccp-eva/silent-recorder" target="_blank"
+      <a href="https://github.com/ccp-eva/media-recorder" target="_blank"
         ><strong>Docs within the project’s README.md</strong></a
       >
       for installation, specification and project examples.</mark
     >
     <hr />
 
-    If you use the CDN, the following components are encapsulated within the
-    <code>mrec</code> object, which can be accessed from the window object. For
-    example, you can toggle the modal by using <code>mrec.toggleModal()</code>.
+    This example uses the online CDN. Thus, the following components are
+    encapsulated within the <strong><code>mrec</code></strong> object, which can
+    be accessed from the window object. For example, you can toggle the modal by
+    using <code>mrec.toggleModal()</code>.
 
-    <small>
-      <ul style="list-style-type: none">
-        <li><code>toggleModal() ⮕ show/hide the modal UI</code></li>
-        <li>
-          <code
-            >modalContent("html") ⮕ set modal content (pass "#video-preview" or
-            "#video-playback" to load video elements)</code
-          >
-        </li>
-        <li>
-          <code>startStream() ⮕ starts a webcam stream w/o recording it</code>
-        </li>
-        <li><code>stopStream() ⮕ stops all active webcam streams</code></li>
-        <li>
-          <code
-            >startRecorder() ⮕ starts a webcamstream (if not active) and starts
-            recording</code
-          >
-        </li>
-        <li>
-          <code
-            >stopRecorder() ⮕ stops the recording, creates the videofile, stops
-            the webcam stream</code
-          >
-        </li>
-        <li>
-          <code
-            >playbackRecording() ⮕ opens the modal to view the recording</code
-          >
-        </li>
-        <li>
-          <code
-            >uploadVideo("filename", {uploadContent: "Up↑", successContent:
-            "✔"}) ⮕ uploads* the recording (filename defaults to ISO 8601
-            timestamp)</code
-          >
-        </li>
-      </ul>
-    </small>
-
-    <h2>2 Demonstration</h2>
-    You can simply tack the above function to any UI element. The samples belows
-    use buttons.<br />
+    <h2>Examples</h2>
     You can <strong>run the buttons sequentially</strong> to see the effect.
 
     <ol>
       <li>
-        <button onclick="mrec.toggleModal()">Open Modal UI</button> ⮕ no webcam
-        stream loaded / empty modal
+        <button onclick="mrec.toggleModal()">
+          Open Modal UI (<code>mrec.toggleModal()</code>)
+        </button>
+        ⮕ no webcam stream loaded / empty modal
       </li>
       <li>
-        <button onclick="startStream()">Start Webcam Stream</button> ⮕ starts a
-        webcam stream w/o recording it
+        <button onclick="mrec.startStream()">
+          Start Webcam Stream (<code>mrec.startStream()</code>)
+        </button>
+        ⮕ starts a webcam stream w/o recording it
       </li>
       <li>
-        <button onclick="modalContent('#video-preview')">
-          Set Modal Content
+        <button onclick="mrec.openVideoPreview()">
+          Open Video Previews(<code>mrec.openVideoPreview()</code>)
         </button>
         ⮕ set modal content to "#video-preview". You should see yourself.
       </li>
@@ -132,7 +102,5 @@
     </pre
       >
     </small>
-
-    <script src="./index-umd.js"></script>
   </body>
 </html>
