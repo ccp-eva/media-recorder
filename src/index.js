@@ -9,9 +9,6 @@ import { startRecorder } from './components/startRecorder';
 import { stopRecorder } from './components/stopRecorder';
 import { uploadVideo } from './components/uploadVideo';
 
-injectShell();
-logMediaDevices(true, true, true);
-
 // Attaching functions to window object for development!
 if (process.env.NODE_ENV !== 'production') {
   console.log('functions exposed to window object');
