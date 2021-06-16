@@ -134,6 +134,9 @@ webpack will create a `main.js` within the `dist` directory. If you now open the
 
 Regardless of [how you install](#installation) the package, you can use the following utility functions:
 
+| function | parameter | type | description
+|---|---|---|---|
+
 <!-- prettier-ignore -->
 | **Utility Function**<br />(signature:default value)<br />? = optional ! = required parameter | **Description** |
 |---|---|
