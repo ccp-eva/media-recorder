@@ -41,56 +41,56 @@
 
     <ol>
       <li>
-        <button onclick="mrec.toggleModal()">
-          Open Modal UI (<code>mrec.toggleModal()</code>)
+        <button onclick="toggleModal()">
+          Open Modal UI (<code>toggleModal()</code>)
         </button>
         ⮕ no webcam stream loaded / empty modal
       </li>
       <li>
-        <button onclick="mrec.startStream()">
-          Start Webcam Stream (<code>mrec.startStream()</code>)
+        <button onclick="startStream()">
+          Start Webcam Stream (<code>startStream()</code>)
         </button>
         ⮕ starts a webcam stream w/o recording it
       </li>
       <li>
-        <button onclick="mrec.openVideoPreview()">
-          Open Video Preview (<code>mrec.openVideoPreview()</code>)
+        <button onclick="openVideoPreview()">
+          Open Video Preview (<code>openVideoPreview()</code>)
         </button>
         ⮕ same as set modal content to "#video-preview". You should see
         yourself.
       </li>
       <li>
-        <button onclick="mrec.stopStream()">
-          Stop Stream (<code>mrec.stopStream()</code>)
+        <button onclick="stopStream()">
+          Stop Stream (<code>stopStream()</code>)
         </button>
         ⮕ stops all active webcam streams
       </li>
       <li>
-        <button onclick="mrec.startRecorder()">
-          Start Recorder (<code>mrec.startRecorder()</code>)
+        <button onclick="startRecorder()">
+          Start Recorder (<code>startRecorder()</code>)
         </button>
         ⮕ starts a webcam stream (if not active) and starts recording
       </li>
       <li>
-        <button onclick="mrec.openVideoPreview()">
-          Open Video Preview (<code>mrec.openVideoPreview()</code>)
+        <button onclick="openVideoPreview()">
+          Open Video Preview (<code>openVideoPreview()</code>)
         </button>
         ⮕ Same as 3. This time you get recorded.
       </li>
       <li>
-        <button onclick="mrec.stopRecorder()">
-          Stop Webcam Recorder (<code>mrec.stopRecorder()</code>)
+        <button onclick="stopRecorder()">
+          Stop Webcam Recorder (<code>stopRecorder()</code>)
         </button>
         ⮕ stops the recording, creates the videofile, stops the webcam stream
       </li>
       <li>
-        <button onclick="mrec.openVideoPlayback()">Open Video Playback</button>
+        <button onclick="openVideoPlayback()">Open Video Playback</button>
         ⮕ same as set modal content to "#video-preview". You see your recording.
       </li>
       <li>
         <button
           onclick="
-        mrec.uploadVideo(
+        uploadVideo(
           {
             uploadContent: `<img src='spinner-upload.svg' width='800px';>`,
             uploadColor: `#E1B4B4`,
@@ -99,7 +99,7 @@
           }
         )"
         >
-          Upload Recorded Video (<code>mrec.uploadVideo({...})</code>)
+          Upload Recorded Video (<code>uploadVideo({...})</code>)
         </button>
         ⮕ uploads* the recording (filename defaults to ISO 8601 timestamp)
       </li>
