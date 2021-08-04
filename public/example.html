@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- <script src="./index-umd.js" async></script> -->
+    <!-- Best to open this with liver server and not with webpack dev-server -->
+    <script src="./index-umd.js" async></script>
+    <style>
+      code {
+        font-size: 0.7rem;
+      }
+    </style>
+    <title>Media Recorder Demo</title>
+  </head>
+
+  <body>
+    <h1>Media Recorder Demo!!!</h1>
+    <mark
+      >📚 Please see the
+      <a href="https://github.com/ccp-eva/media-recorder" target="_blank"
+        ><strong> Docs within the project’s README.md </strong></a
+      >
+      for installation, specification and project examples.</mark
+    >
+    <hr />
+
+    This example uses the online CDN. Thus, the following components are
+    encapsulated within the <strong><code>mrec</code></strong> object, which can
+    be accessed from the window object. For example, you can toggle the modal by
+    using <code>mrec.toggleModal()</code>. <br />
+    For other installation methods
+    <a href="https://github.com/ccp-eva/media-recorder" target="_blank">
+      see the docs</a
+    >.
+
+    <h2>Examples</h2>
+    You can <strong>run the buttons sequentially</strong> to see the effect.
+
+    <ol>
+      <li>
+        <button onclick="mrec.toggleModal()">
+          Open Modal UI (<code>mrec.toggleModal()</code>)
+        </button>
+        ⮕ no webcam stream loaded / empty modal
+      </li>
+      <li>
+        <button onclick="mrec.startStream()">
+          Start Webcam Stream (<code>mrec.startStream()</code>)
+        </button>
+        ⮕ starts a webcam stream w/o recording it
+      </li>
+      <li>
+        <button onclick="mrec.openVideoPreview()">
+          Open Video Preview (<code>mrec.openVideoPreview()</code>)
+        </button>
+        ⮕ same as set modal content to "#video-preview". You should see
+        yourself.
+      </li>
+      <li>
+        <button onclick="mrec.stopStream()">
+          Stop Stream (<code>mrec.stopStream()</code>)
+        </button>
+        ⮕ stops all active webcam streams
+      </li>
+      <li>
+        <button onclick="mrec.startRecorder()">
+          Start Recorder (<code>mrec.startRecorder()</code>)
+        </button>
+        ⮕ starts a webcam stream (if not active) and starts recording
+      </li>
+      <li>
+        <button onclick="mrec.openVideoPreview()">
+          Open Video Preview (<code>mrec.openVideoPreview()</code>)
+        </button>
+        ⮕ Same as 3. This time you get recorded.
+      </li>
+      <li>
+        <button onclick="mrec.stopRecorder()">
+          Stop Webcam Recorder (<code>mrec.stopRecorder()</code>)
+        </button>
+        ⮕ stops the recording, creates the videofile, stops the webcam stream
+      </li>
+      <li>
+        <button onclick="mrec.openVideoPlayback()">Open Video Playback</button>
+        ⮕ same as set modal content to "#video-preview". You see your recording.
+      </li>
+      <li>
+        <button
+          onclick="
+        mrec.uploadVideo(
+          {
+            uploadContent: `<img src='spinner-upload.svg' width='800px';>`,
+            uploadColor: `#E1B4B4`,
+            successContent: `<img src='spinner-done.svg' width='800px';>`,
+            successColor: `#D3F9D3`
+          }
+        )"
+        >
+          Upload Recorded Video (<code>mrec.uploadVideo({...})</code>)
+        </button>
+        ⮕ uploads* the recording (filename defaults to ISO 8601 timestamp)
+      </li>
+    </ol>
+
+    <small>
+      * You need to have a server-side endpoint for this function. PHP example:
+      <pre>
+      $target_path = "uploads/" . basename($_FILES["vidfile"]["name"] . ".mp4");
+      move_uploaded_file($_FILES["vidfile"]["tmp_name"], $target_path );
+    </pre
+      >
+    </small>
+  </body>
+</html>
