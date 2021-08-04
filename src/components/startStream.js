@@ -1,4 +1,4 @@
-export const startStream = async (
+export const startStream = (
   constraintObject = {
     audio: true,
     video: { facingMode: 'user', frameRate: 15 },
