@@ -134,8 +134,8 @@ webpack will create a `main.js` within the `dist` directory. If you now open the
 
 Regardless of [how you install](#installation) the package, you can use the following utility functions:
 
-| function | parameter | type | description
-|---|---|---|---|
+| function | parameter | type | description |
+| -------- | --------- | ---- | ----------- |
 
 <!-- prettier-ignore -->
 | **Utility Function**<br />(signature:default value)<br />? = optional ! = required parameter | **Description** |
@@ -192,7 +192,8 @@ upload_max_filesize = 100M
 
 1. `git clone git@github.com:ccp-eva/media-recorder.git`
 2. `npm install`
-3. `npm start`
+3. `npm build` (this creates a dist folder first)
+4. `npm start` (opens a dev server on `localhost:8080`)
 
 This will launch `webpack-dev-server` (w/ Hot Module Replacement / Auto Refresh).  
 **Note**: To have some easier debugging-time during development, all functions are exposed to the global scope using `process.env.NODE_ENV !== 'production'` defined within the `index.js`.
