@@ -1,7 +1,7 @@
 import { modalContent } from './modalContent';
 // upload the blob
 // default filename (fname) is ISO 8601 timestamp (character-adjusted due to filename limitations)
-export const uploadVideo = (modalObj) => {
+export const uploadVideo = (modalObj, endpointPath = 'upload_video.php') => {
   // only continue if there something if there is a video blob
   if ('blob' in window) {
     // prevent browser to close
@@ -28,8 +28,8 @@ export const uploadVideo = (modalObj) => {
     modalContent(modalObject.uploadContent, modalObject.uploadColor);
 
     // ☁️ upload process starts here...
-    // define endpoint
-    const endpoint = 'upload_video.php';
+    // define explicit endpoint as string (defaults to: "upload_video.php")
+    const endpoint = endpointPath;
     // Create a FormData object
     const formData = new FormData();
     // append the video file (i.e., the recorded blob)
