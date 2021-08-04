@@ -1,14 +1,9 @@
-import { injectShell } from './injectShell';
-
-export const startStream = (
+export const startStream = async (
   constraintObject = {
     audio: true,
     video: { facingMode: 'user', frameRate: 15 },
   },
 ) => {
-  if (!document.getElementById('greeting-modal')) {
-    injectShell();
-  }
   navigator.mediaDevices
     .getUserMedia(constraintObject)
     .then((stream) => {

@@ -9,10 +9,12 @@ import { startRecorder } from './components/startRecorder';
 import { stopRecorder } from './components/stopRecorder';
 import { uploadVideo } from './components/uploadVideo';
 
+// always injectShell
+injectShell();
+
 // Attaching functions to window object for development!
 if (process.env.NODE_ENV !== 'production') {
   console.log('functions exposed to window object');
-  window.injectShell = injectShell;
   window.logMediaDevices = logMediaDevices;
   window.toggleModal = toggleModal;
   window.openVideoPreview = openVideoPreview;
@@ -26,7 +28,6 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 export {
-  injectShell,
   logMediaDevices,
   toggleModal,
   openVideoPreview,
