@@ -192,7 +192,7 @@ upload_max_filesize = 100M
 
 1. `git clone git@github.com:ccp-eva/media-recorder.git`
 2. `npm install`
-3. `npm build` (this creates a dist folder first)
+3. `npm run build` (this creates a dist folder first)
 4. `npm start` (opens a dev server on `localhost:8080`)
 5. Navigate to `example.html`
 
