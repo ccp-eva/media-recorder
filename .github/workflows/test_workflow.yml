@@ -17,5 +17,5 @@ jobs:
           port: 22
           script: |
             cd /home/www/docflippers.com/test
-            git pull git@github.com:ccp-eva/media-recorder.git
+            git pull --force
             git status
