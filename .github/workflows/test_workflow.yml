@@ -1,0 +1,20 @@
+name: Deployment Workflow
+on:
+  push:
+    branches: [main]
+
+jobs:
+  job_one:
+    name: Deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: testing server ssh connection
+        uses: appleboy/ssh-action@master
+        with: s99.goserver.host
+        username: web175
+        key: ${{ secrets.SK }}
+        port: 22
+        script: |
+          cd /home/www/docflippers.com/test
+          git pull git@github.com:ccp-eva/media-recorder.git
+          git status
