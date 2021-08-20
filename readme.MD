@@ -6,7 +6,7 @@
 
 ---
 
-## Support / Limitation
+## Support / Limitations
 
 This package relies on the _MediaRecorder API_. Although it is widley supported (see https://caniuse.com/?search=mediarecorder), Apple’s Safari still disables that feature by default (see https://stackoverflow.com/questions/54344342/video-recording-for-safari-browser). That means, this package only works in non-iOS environments and for non-Safari browsers.
 
