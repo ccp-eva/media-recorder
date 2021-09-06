@@ -30,4 +30,8 @@ module.exports = {
     watchContentBase: true,
     // hot: true,
   },
+
+  experiments: {
+    topLevelAwait: true,
+  },
 };
