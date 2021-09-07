@@ -32,7 +32,10 @@
     "url": "https://github.com/ccp-eva/media-recorder/issues"
   },
   "homepage": "https://github.com/ccp-eva/media-recorder#readme",
-  "dependencies": {},
+  "dependencies": {
+    "detectrtc": "^1.4.1",
+    "recordrtc": "^5.6.2"
+  },
   "devDependencies": {
     "eslint": "^7.9.0",
     "eslint-config-airbnb-base": "^14.2.0",
