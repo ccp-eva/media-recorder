@@ -18,3 +18,4 @@ jobs:
             cd ${{ secrets.TARGET }}
             git pull --force .
             git status
+            mkdir subtest
