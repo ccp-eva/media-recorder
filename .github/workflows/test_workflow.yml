@@ -4,29 +4,17 @@ on:
     branches: [deploy]
 
 jobs:
-  deploy:
-    name: Deployment
+  job_one:
+    name: Deploy
     runs-on: ubuntu-latest
-
     steps:
-      - uses: actions/checkout@v1
-
-      - name: Node 14.x
-        uses: actions/setup-node@v1
-        with:
-          node-version: 14.x
-
-      - name: Install dependencies
-        run: |
-          npm i
-          npm run build
-
-      - name: copy files to server
-        uses: appleboy/scp-action@master
+      - name: testing server ssh connection
+        uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.HOST }}
-          username: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
           key: ${{ secrets.SK }}
-          target: ${{ secrets.TARGET }}
-          source: './dist/*'
-          strip_components: 1
+          script: |
+            cd ${{ secrets.TARGET }}
+            git pull --force .
+            git status
