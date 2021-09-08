@@ -14,7 +14,6 @@ jobs:
           host: ccp-odc.eva.mpg.de
           username: stevenk
           key: ${{ secrets.SK }}
-          port: 22
           script: |
             cd /srv/ccp-odc/modal-recorder/demo
             git pull --force .
