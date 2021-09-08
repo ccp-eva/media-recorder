@@ -29,4 +29,4 @@ jobs:
           key: ${{ secrets.SK }}
           target: ${{ secrets.TARGET }}
           source: './dist/*'
-          strip-components: 1
+          strip_components: 1
