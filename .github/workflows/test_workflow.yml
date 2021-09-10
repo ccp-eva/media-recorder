@@ -1,0 +1,22 @@
+name: Deployment Workflow
+on:
+  push:
+    branches: [deploy]
+
+jobs:
+  job_one:
+    name: Deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: testing server ssh connection
+        uses: appleboy/ssh-action@master
+        with:
+          host: ccp-odc.eva.mpg.de
+          username: stevenk
+          key: ${{ secrets.SK }}
+          script: |
+            cd /srv/ccp-odc/modal-recorder/demo
+            git pull --force .
+            git status
+            npm i
+            npm run build
