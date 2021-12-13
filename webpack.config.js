@@ -13,7 +13,7 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
     filename: 'index-umd.js',
     library: {
-      name: 'mrec',
+      name: mode !== 'production' ? 'mrecInvisible' : 'mrec',
       type: 'umd',
     },
   },

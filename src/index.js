@@ -14,17 +14,21 @@ injectShell();
 
 // Attaching functions to window object for development!
 if (process.env.NODE_ENV !== 'production') {
-  console.log('functions exposed to window object');
-  window.logMediaDevices = logMediaDevices;
-  window.toggleModal = toggleModal;
-  window.openVideoPreview = openVideoPreview;
-  window.openVideoPlayback = openVideoPlayback;
-  window.modalContent = modalContent;
-  window.startStream = startStream;
-  window.stopStream = stopStream;
-  window.startRecorder = startRecorder;
-  window.stopRecorder = stopRecorder;
-  window.uploadVideo = uploadVideo;
+  console.log(
+    'You are not in production. mrec functions are exposed within global mrec object',
+  );
+  window.mrec = {
+    logMediaDevices,
+    toggleModal,
+    openVideoPreview,
+    openVideoPlayback,
+    modalContent,
+    startStream,
+    stopStream,
+    startRecorder,
+    stopRecorder,
+    uploadVideo,
+  };
 }
 
 export {

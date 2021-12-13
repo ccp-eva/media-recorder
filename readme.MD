@@ -186,29 +186,22 @@ post_max_size = 105M
 upload_max_filesize = 100M
 ```
 
-## Development & Contribution
+## Development
 
-### Dev Setup
+### Local Development
 
 1. `git clone git@github.com:ccp-eva/media-recorder.git`
 2. `npm install`
-3. `npm run build` (this creates a dist folder first)
-4. `npm start` (opens a dev server on `localhost:8080`)
-5. Navigate to `example.html`
-
-This will launch `webpack-dev-server` (w/ Hot Module Replacement / Auto Refresh).  
-**Note**: To have some easier debugging-time during development, all functions are exposed to the global scope using `process.env.NODE_ENV !== 'production'` defined within the `index.js`.
+3. `npm start` (opens a dev server on `localhost:8080`)
+4. You may need to navigate to `example.html`
 
 ### Build for Production
 
 1. `git clone git@github.com:ccp-eva/media-recorder.git`
 2. `npm install`
 3. `npm run build`
+4. Upload the contents of the dist folder to your webserver
 
-**Note** This project uses the ESLint/AirBnb linter styles (see `.eslintrc.yml`) and prettier as formatter (see `.prettierrc`). If you do a PR, it would be great if you conform to these.
+### Contributions
 
-## Near Future Development
-
-- [ ] Multiple Stream Recording (e.g., Webcam + Screen)
-- [ ] Better Modal UI
-- [ ] Refactor Code Base to conform to WebRTC stanrdards
+This project uses the ESLint/AirBnb linter styles (see `.eslintrc.yml`) and prettier as formatter (see `.prettierrc`). As there is no CI hook for linting, it would be great if you conform to these styles/linters.
