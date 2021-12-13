@@ -1,10 +1,10 @@
 import { stopStream } from './stopStream';
 
 export const stopRecorder = () => {
-  if ('mediaRecorder' in window && window.mediaRecorder.state === 'recording') {
-    window.mediaRecorder.stop();
-    console.log(window.mediaRecorder.state);
-    window.mediaRecorder.onstop = () => {
+  if ('MediaRecorder' in window && window.MediaRecorder.state === 'recording') {
+    window.MediaRecorder.stop();
+    console.log(window.MediaRecorder.state);
+    window.MediaRecorder.onstop = () => {
       window.blob = new Blob(window.dataChunks, { type: 'video/webm' });
       // reset dataChunks (for consecutive videos)
       window.dataChunks = [];

@@ -37,11 +37,11 @@ export const startRecorder = (
       video.onloadedmetadata = () => video.play();
 
       // recrod stream
-      window.mediaRecorder = new MediaRecorder(window.localStream, options);
+      window.MediaRecorder = new MediaRecorder(window.localStream, options);
       window.dataChunks = [];
-      window.mediaRecorder.start();
-      console.log(window.mediaRecorder.state);
-      window.mediaRecorder.ondataavailable = (e) =>
+      window.MediaRecorder.start();
+      console.log(window.MediaRecorder.state);
+      window.MediaRecorder.ondataavailable = (e) =>
         window.dataChunks.push(e.data);
     })
     .catch((err) => console.log(err.name, err.message));
