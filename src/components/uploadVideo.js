@@ -1,9 +1,9 @@
 import { modalContent } from './modalContent';
-// upload the blob
+// upload the blobvid
 // default filename (fname) is ISO 8601 timestamp (character-adjusted due to filename limitations)
 export const uploadVideo = (modalObj, endpointPath = 'upload_video.php') => {
-  // only continue if there something if there is a video blob
-  if ('blob' in window) {
+  // only continue if there something if there is a video blobvid
+  if (window.blobvid) {
     // prevent browser to close
     window.onbeforeunload = (e) => {
       // Cancel the event
@@ -32,8 +32,8 @@ export const uploadVideo = (modalObj, endpointPath = 'upload_video.php') => {
     const endpoint = endpointPath;
     // Create a FormData object
     const formData = new FormData();
-    // append the video file (i.e., the recorded blob)
-    formData.append('vidfile', window.blob, modalObject.fname);
+    // append the video file (i.e., the recorded blobvid)
+    formData.append('vidfile', window.blobvid, modalObject.fname);
     // post the file using fetch
     fetch(endpoint, {
       method: 'POST',
@@ -47,7 +47,7 @@ export const uploadVideo = (modalObj, endpointPath = 'upload_video.php') => {
       })
       .catch(console.error);
   } else {
-    // if no blob is in window show warning:
+    // if no blobvid is in window show warning:
     modalContent('<h1>No recording was found 😔</h1>', 'PeachPuff');
   }
 };
