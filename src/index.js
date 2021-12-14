@@ -8,6 +8,7 @@ import { stopStream } from './components/stopStream';
 import { startRecorder } from './components/startRecorder';
 import { stopRecorder } from './components/stopRecorder';
 import { uploadVideo } from './components/uploadVideo';
+import { downloadVideo } from './components/downloadVideo';
 
 // always injectShell
 injectShell();
@@ -28,6 +29,7 @@ if (process.env.NODE_ENV !== 'production') {
     startRecorder,
     stopRecorder,
     uploadVideo,
+    downloadVideo,
   };
 }
 
@@ -42,4 +44,5 @@ export {
   startRecorder,
   stopRecorder,
   uploadVideo,
+  downloadVideo,
 };

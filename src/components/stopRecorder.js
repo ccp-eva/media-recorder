@@ -5,13 +5,13 @@ export const stopRecorder = () => {
     window.MediaRecorder.stop();
     console.log(window.MediaRecorder.state);
     window.MediaRecorder.onstop = () => {
-      window.blob = new Blob(window.dataChunks, { type: 'video/webm' });
+      window.blobvid = new Blob(window.dataChunks, { type: 'video/webm' });
       // reset dataChunks (for consecutive videos)
       window.dataChunks = [];
-      const videoURL = window.URL.createObjectURL(window.blob);
+      window.videoURL = window.URL.createObjectURL(window.blobvid);
       // tack to the videoPlayback element
       const videoPlayback = document.getElementById('video-playback');
-      videoPlayback.src = videoURL;
+      videoPlayback.src = window.videoURL;
     };
   }
   stopStream();
