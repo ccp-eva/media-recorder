@@ -12,6 +12,6 @@ export const downloadVideo = (fileName = 'video.webm') => {
     // remove link
     link.remove();
   } else {
-    console.log('Not video found in window object');
+    console.log('No video found in window object');
   }
 };
