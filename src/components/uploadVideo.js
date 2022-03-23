@@ -4,14 +4,14 @@ import { modalContent } from './modalContent';
 export const uploadVideo = (modalObj, endpointPath = 'upload_video.php') => {
   // only continue if there something if there is a video blobvid
   if (window.blobvid) {
-    // prevent browser to close
-    window.onbeforeunload = (e) => {
-      // Cancel the event
-      // If you prevent default behavior in Mozilla Firefox prompt will always be shown
-      e.preventDefault();
-      // Chrome requires returnValue to be set
-      e.returnValue = '';
-    };
+    // // prevent browser to close
+    // window.onbeforeunload = (e) => {
+    //   // Cancel the event
+    //   // If you prevent default behavior in Mozilla Firefox prompt will always be shown
+    //   e.preventDefault();
+    //   // Chrome requires returnValue to be set
+    //   e.returnValue = '';
+    // };
 
     const modalObjectDefaults = {
       fname: new Date().toISOString().replaceAll(':', '-').replace('.', '-'),
@@ -39,10 +39,9 @@ export const uploadVideo = (modalObj, endpointPath = 'upload_video.php') => {
       method: 'POST',
       body: formData, // formData
     })
-      .then()
       .then(() => {
         // release closing lock
-        window.onbeforeunload = null;
+        // window.onbeforeunload = null;
         modalContent(modalObject.successContent, modalObject.successColor);
       })
       .catch(console.error);
